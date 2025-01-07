@@ -1,0 +1,21 @@
+<%- include("./partials/head") %>
+  <body>
+    <%- include("./partials/header")%>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <main>
+    <form action="login">
+      <h3>Inicio de sesion</h3>
+      <input type="text" id="email" placeholder="Ingrese su Email" required>
+      <input type="text" id="password" placeholder="Ingrese su contaseña" required>
+      <div class="buttons">
+      <a href="/register">Registrarme</a>
+      <a href="/login">Olvide mi clave</a>
+      </div>
+      <button type="submit">Iniciar sesion</button>
+    </form>
+    
+    <script src="/public/javascripts/app.js"></script>
+  </main>
+    <%- include("./partials/footer") %>
+  </body>
+</html>

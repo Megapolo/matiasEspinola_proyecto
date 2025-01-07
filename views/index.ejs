@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <%- include("./partials/head") %>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+  <body>
+    <%- include('partials/header') %>
+    <main>
+    <div id="baner">
+      <img src="images/Logo-banner/Potenciar.jpg" alt="futuro banner">
+    </div>
+    <div class="box-destacados">
+      <h5>Productos destacados</h5>
+      <i class="fa-solid fa-arrow-left"></i>
+      <i class="fa-solid fa-arrow-right"></i>
+      <div class="destacados">
+        <% producto.forEach(element => { %>
+          <article>
+          <a href="/product/<%=element.nombre%>">
+          <img src="<%= element.img %>"> 
+          <h3><%= element.nombre %></h3>
+          <p>$<%= element.precio %></p>
+          <p class="type"><%=element.tipo.replaceAll("-", " ")%></p>
+        </a>
+        </article>
+        <%}); %>
+      </div>
+    </div>
+    <script src="/javascripts/app.js"></script>
+  </main>
+    <%- include('partials/footer') %>
+  </body>
+</html>

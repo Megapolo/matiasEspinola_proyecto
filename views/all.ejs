@@ -1,0 +1,64 @@
+<%- include("./partials/head") %>
+<link rel="stylesheet" href="/stylesheets/all.css">
+  <body>
+      <%- include("./partials/header") %>
+    <main>
+    <aside>
+      <section class="order">
+        <h4>Ordenar por:</h4>
+        <section class="order-container">
+          <div>
+            <input type="checkbox" name="" id="">
+            <h4>Alfabeticamente</h4>
+          </div>
+          <div>
+            <input type="checkbox" name="" id="">
+            <h4>Menor precio</h4>
+          </div>
+          <div>
+            <input type="checkbox" name="" id="">
+            <h4>Mayor precio</h4>
+          </div>
+        </section>
+      </section>
+      <section class="brands">
+        <h4>Marcas:</h4>
+        <% fabricante.forEach(element => {%>
+          <a href="/products/search/?search=<%= element %>"><%= element %></a>
+          <%});%>
+      </section>
+      <section class="typeof">
+        <h4>Productos:</h4>
+        <a href="/products/search?search=Gabinete">Gabinetes</a>
+        <a href="/products/search?search=placa-de-video">Placas de video</a>
+        <a href="/products/search?search=procesador">Procesadores</a>
+        <a href="/products">Futuro articulo</a>
+      </section>
+    </aside>
+    <section class="content">
+    <h1>Todos los productos</h1>
+    <div class="articles">
+      
+    <% productos.forEach(product => { %>
+      <article class="product-box">
+        <a href="/product/<%=product.nombre%>"><img src="<%=product.img%>" alt="<%=product.nombre%>">
+        <h4 class="nombre"><%= product.nombre %></h4>
+        <% if (product.descuento) {%>
+          <% let precioActualizado = product.precio - product.precio*product.descuento/100 %>
+          <p class="discount"><del>$<%=product.precio%></del></p>
+          <h4 class="precio"><strong>$ <%=precioActualizado%></strong></h4>
+        <% } else { %>
+          <h4 class="precio"><strong>$ <%=product.precio%></strong></h4> 
+          <% } %>
+        <button>Ver más</button>
+        </a>
+      </article>
+    <% }) %>
+    </div>
+
+      
+    </section>
+  </main>
+    <%- include("./partials/footer") %>
+  </body>
+</html>

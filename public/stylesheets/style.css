@@ -1,0 +1,30 @@
+body {
+  padding: 50px;
+  font: 14px "Roboto", serif;
+  background-color: #ebebeb;
+  h1 {
+    margin-top: 0;
+  };
+}
+
+body img {
+  max-width: 500px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.main-dark-mode {
+  background-color: #2d2b2b;
+  color: white;
+}

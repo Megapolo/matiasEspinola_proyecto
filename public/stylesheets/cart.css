@@ -1,0 +1,147 @@
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 3em;
+    min-height: 500px;
+    transition: .2s;
+}
+
+a {
+    color: black;
+}
+/* Barra de progreso desesperante */
+
+#status {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2em;
+    div {
+        width: 80px;
+        height: 40px;
+        border: 2px solid black;
+        border-top-right-radius: 8px 50%;
+        border-bottom-right-radius: 10px 50%;
+        padding-left: 1em;
+        overflow: hidden;
+        clip-path: ellipse(130px 140px at 10% 20%);
+    }
+}
+
+/* Carrito como tal */
+
+#principal {
+    display: flex;
+    justify-content: flex-start;
+    min-height: 400px; 
+    height: 100%;
+    transition: background-color .2s;
+}
+
+#cart {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 70%;
+    background-color: rgb(197, 197, 197);
+    justify-content: center;
+    margin: 0 1em 1em 0;
+    border: 2px solid black;
+    height: fit-content;
+    transition:  background-color .2s;
+}
+
+.producto {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    height: fit-content;
+    position: relative;
+    margin: 0 1em 0 1em ;
+    border-bottom: 1px solid black;
+    align-items: center;
+    img {
+        margin: 1em;
+        max-width: 120px;
+    }
+    h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 20%;
+    }
+    p {
+        font-size: medium;
+        position: absolute;
+        top: 30%;
+        right: 10%;
+    }
+}
+
+.producto:last-child {
+    border-bottom: none;
+}
+
+/* Checkout */
+
+#resumen {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 0 auto;
+    border: 2px solid black;
+    width: 20%;
+    height: fit-content;
+    position: relative;
+    background-color: rgb(197, 197, 197);
+    transition:  background-color .2s;
+    h3 {
+        width: fit-content;
+        align-self:center;
+    }
+    div {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    button {
+        position: absolute;
+        bottom: -5em;
+        padding: 1em;
+        border-radius: 5px;
+        background-color: #b3b3b3;
+        border: 0;
+        transition: 0.2s;
+    }
+}
+#delete:hover {
+    background-color: blueviolet;
+}
+
+#next {
+    right: 0;
+}
+
+#next:hover {
+    background-color: #08BC08;
+}
+
+.main-dark-mode {
+    #resumen, #cart{
+        background-color: #201e1e;
+    }
+
+    #resumen button{
+        background-color: #ebebeb;
+    }
+    #delete:hover{
+        background-color: blueviolet;
+    }
+    #next:hover {
+        background-color: #08BC08;
+    }
+}

@@ -1,0 +1,46 @@
+<%- include("./partials/head") %>
+  <body>
+      <%-include("./partials/header")%>
+      <link rel="stylesheet" href="/stylesheets/cart.css">
+      <script src="https://kit.fontawesome.com/80f5c748e4.js" crossorigin="anonymous"></script>
+    <main>
+    <div id="status">
+      <div><p>Carrito</p></div>
+      <div><p>Datos</p></div>
+      <div><p>Pago</p></div>
+      <div><p>Estado</p></div>
+    </div>
+    <div id="principal">
+      <section id="cart">
+        <article class="producto">
+          <a href="/product/RTX-4060"><img src="images/Placas-de-video/RTX-4060.jpg" alt="RTX-4060"></a>
+          <h3>Nvidia RTX-4060</h3>
+          <p>Precio</p>
+        </article>
+        <article class="producto">
+          <a href="/product/Ryzen5-5600G"><img src="images/Procesadores/Ryzen5-5600G.jpg" alt="RTX-4060"></a>
+          <h3>Ryzen5 5600G</h3>
+          <p>$50000</p>
+        </article> 
+      </section>
+      <section id="resumen">
+        <h3>Resumen del pedido</h3>
+        <div>
+          <p>Subtotal</p>
+          <p>$50000</p>
+        </div>
+        <div style="border-top: 1px solid #b3b3b3;">
+          <p>Total</p>
+          <p>$50000</p>
+        </div>
+        <button id="delete"><i class="fa-solid fa-trash-can"></i></button>
+        <button id="next">Continuar</button>
+      </section>
+    </div>
+
+
+    <script src="/javascripts/app.js"></script>
+  </main>
+    <%-include("./partials/footer")%>
+  </body>
+</html>

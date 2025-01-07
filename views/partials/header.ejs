@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/stylesheets/header.css">
+<body>
+<header>
+    <div id="upper-bar">
+        <img src="/images/Logo-banner/Logo.jpg" alt="Logo" id="logo">
+        <form action="/products/search" method="get" id="barra"> 
+            <input id="search-bar" name="search" type="text" placeholder="Buscar...">
+             <button type="submit" id="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+           </form>
+        <a href="/login" id="login"><p>Ingresar</p></a>
+        <a href="/cart" id="carrito"><i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><i class="fa-solid fa-bars"></i></li>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/products">Productos</a</li>
+            <li><a href="">Contactos</a></li>
+            <li><div onclick="dark_mode()"><i class="fa-solid fa-toggle-off button-on-off "></i>
+                <i class="fa-solid fa-toggle-on button-on-off hidden"></i>
+                 Modo Oscuro</li>
+                </div>
+        </ul>
+    </nav>
+    <script src="/javascripts/header.js"></script>
+</header>

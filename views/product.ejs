@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <%- include("./partials/head") %>
+    <link rel="stylesheet" href="/stylesheets/product.css">
+  <body>
+      <%- include("./partials/header") %>
+    <main>
+    <section class="producto">
+      <section class="imgs">
+        <img src="<%=producto.img%>" alt="<%=producto.nombre%>" id="principal">
+        <div class="tiny">
+        <img src="<%=producto.img%>" alt="<%=producto.nombre%>" class="secondary">
+        <img src="<%=producto.img%>" alt="<%=producto.nombre%>" class="secondary">
+        <img src="<%=producto.img%>" alt="<%=producto.nombre%>" class="secondary">
+        <img src="<%=producto.img%>" alt="<%=producto.nombre%>" class="secondary">
+        </div>
+      </section>
+      <section class="details">
+        <a href="/search/<%=producto.tipo%>"><h4><%=producto.tipo.replaceAll("-", " ")%></h4></a>
+        <h3><%=producto.fabricante%></h3>
+        <h2><%=producto.nombre%></h2>
+        <% if (producto.descuento) {%>
+          <% let precioActualizado = producto.precio - (producto.precio*producto.descuento/100)  %>
+        <p class="price"><del>$ <%=producto.precio%></del></p>
+        <p id="discount"><b><%=producto.descuento%> % de descuento!</b></p>
+        <p id="price">$ <%=precioActualizado%></p>
+       <%} else {%> 
+        <p id="price">$ <%=producto.precio%></p>
+       <%}%>
+        <p id="stock">En stock</p>
+        <div class="number-input">
+          <button onclick="decreaseValue()">-</button>
+          <input type="number" id="numericInput" value="1" min="1" max="10">
+          <button onclick="increaseValue()">+</button>
+        </div>
+        <a href="/cart"><button class="order" id="buy">Comprar ahora</button></a>
+        <button class="order" id="toCart">Añadir al carrito</button>
+      </section>
+      <section class="description">
+        <h4>Título de descripcion del artículo</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quam mollitia ad aspernatur veritatis iusto at voluptates ea quos ipsum, eaque libero dicta sed, ratione, nihil vitae perferendis nam esse.</p>
+      </section>
+    </section>
+      <% if (relacionados) {%>
+    <section class="related">
+      <p id="pRelacionados">Productos relacionados:</p>
+      <%relacionados.forEach(element => { %>
+        <div class="producto">
+        <a href="/product/<%=element.nombre%>">
+          <img src="<%=element.img%>" alt="<%=element.nombre%>">
+          <h4><%=element.nombre%></h4>
+          <p><%=element.precio%></p>
+        </a>
+      </div>
+        <%}); %>
+    </section>
+     <% } %>
+
+    <script src="/javascripts/product.js"></script>
+  </main>
+    <%- include("./partials/footer") %>
+  </body>
+</html>
