@@ -11,7 +11,7 @@ const product = (req, res, next) => {
   let relacionados = db.filter((element) => element.tipo == producto.tipo && element.id != producto.id)
   if (producto) {
     let title = producto.nombre;
-    res.render("product", { title, producto, relacionados});
+    res.render("products/product", { title, producto, relacionados});
   } else {
     res.send("Producto no encontrado.");
   }

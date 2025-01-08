@@ -10,7 +10,7 @@ const search = (req, res, next) => {
     element.tipo.toUpperCase().includes(name));
   const fabricante = [...new Set(producto.map(element => element.fabricante))];
   if (producto.length >= 0) {
-    return res.render('search', {fabricante, name, producto, title: "Búsqueda"});
+    return res.render('products/search', {fabricante, name, producto, title: "Búsqueda"});
   } else
   return res.send("El producto seleccionado no existe todavía");
 }
@@ -19,7 +19,7 @@ const search = (req, res, next) => {
 const all = (req, res, next) => {
   const producto = []
   const fabricante = [...new Set(productos.map(element => element.fabricante))];
-  return res.render('all', {fabricante, productos, title: "Lista de Productos"});
+  return res.render('products/all', {fabricante, productos, title: "Lista de Productos"});
 };
 
 

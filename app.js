@@ -4,12 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var cartRouter = require('./routes/cart_router');
+var cartRouter = require('./routes/products/cart_router');
 var indexRouter = require('./routes/index_router');
-var loginRouter = require('./routes/login_router');
-var productRouter = require('./routes/product_router');
-var registerRouter = require('./routes/register_router');
-var searchRouter = require('./routes/search_router');
+var loginRouter = require('./routes/users/login_router');
+var productRouter = require('./routes/products/product_router');
+var registerRouter = require('./routes/users/register_router');
+var searchRouter = require('./routes/products/search_router');
 
 var app = express();
 

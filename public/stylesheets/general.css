@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
-@import url('footer.css');
-@import url('header.css');
+@import url('partials/footer.css');
+@import url('partials/header.css');
 @import url('style.css');
 
 body {

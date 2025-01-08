@@ -3,6 +3,6 @@ var router = express.Router();
 
 
 const index = (req, res) => {
-  res.render('cart', { title: "Carrito"})
+  res.render('products/cart', { title: "Carrito"})
 }
 module.exports = index;
