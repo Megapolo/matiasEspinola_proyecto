@@ -27,5 +27,6 @@ Como inspiración tomé varios sitios qué comercializan los mismos productos qu
 Link para invitar:
 https://miro.com/welcomeonboard/c1NZWlFyRjRoRWRhR2cxaWhBYXdYazRtZUNqTG9idEkxekhuaHAvTEJVUGhMalRmdkhETmFyRzA3SG1WM0NIbGxrTzRtMU8vWUtwYW5Mb2Fmc2k0UkFieWtjYkJKeExGY2o1VmcyeEZCRWVCZVRCeVlQNU42Vk5Odk9EVW1BVjMhZQ==?share_link_id=39444832894
 
-Link del tablero: 
-https://miro.com/app/board/uXjVLSpCOY8=/
+Para acceder al modo admin como todavía no comprendo bien las sesiones, se accede con el link:
+
+http://localhost:3000/users/admin
