@@ -1,5 +1,12 @@
 # matiasEspinola_proyecto
 
+Sprint 3:
+
+Para acceder al modo admin como todavía no comprendo bien las sesiones, se accede con el link:
+
+http://localhost:3000/users/admin
+
+
 Tematica: 
 La tematica en si seria una página de venta de componentes y accesorios de PC.
 La audiencia objetivo serán personas que deseen tener su PC y tengan algo de conocimiento previo sobre los componentes que desean.
@@ -27,6 +34,3 @@ Como inspiración tomé varios sitios qué comercializan los mismos productos qu
 Link para invitar:
 https://miro.com/welcomeonboard/c1NZWlFyRjRoRWRhR2cxaWhBYXdYazRtZUNqTG9idEkxekhuaHAvTEJVUGhMalRmdkhETmFyRzA3SG1WM0NIbGxrTzRtMU8vWUtwYW5Mb2Fmc2k0UkFieWtjYkJKeExGY2o1VmcyeEZCRWVCZVRCeVlQNU42Vk5Odk9EVW1BVjMhZQ==?share_link_id=39444832894
 
-Para acceder al modo admin como todavía no comprendo bien las sesiones, se accede con el link:
-
-http://localhost:3000/users/admin
