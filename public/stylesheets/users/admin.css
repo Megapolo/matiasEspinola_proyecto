@@ -1,0 +1,151 @@
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color .2s;
+}
+
+label {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    cursor: pointer; 
+}
+
+#choice {
+    margin-top: 4em;
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+}
+
+#toDo {
+    margin-top: 2em;
+    width: 30%;
+}
+
+.products {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.users {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.inputForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    flex-direction: column;
+    gap: .5em;
+    button[type='submit'] {
+        width: 80%;
+        border-radius: 5px;
+        height: 2rem;
+        background-color: #d1d1d1;
+        border: none;
+        transition: background-color .2s;
+    }
+    button:hover {
+        background-color: #a3a3a3;
+    }
+}
+
+.inputUser {
+    box-sizing: border-box;
+    margin-top: 2em;
+    gap: .5em;
+    width: 80%;
+    font-size: medium;
+    border: none;
+    height: 2rem;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#newArticle {
+    margin-top: 2em;
+    gap: .5em;
+    display: flex;
+    flex-direction: column;
+    select, input {
+        font-size: medium;
+        border: none;
+        height: 2rem;
+        background-color: white;
+        border-radius: 5px;
+        justify-self: center;
+    }
+    input[type='file'] {
+        margin-top: .3em ;
+        background-color: #ebebeb;
+        border-radius: 0;
+    }
+    button {
+        border-radius: 5px;
+        height: 2rem;
+        background-color: #d1d1d1;
+        border: none;
+        transition: background-color .2s;
+    }
+    button:hover {
+        background-color: #a3a3a3;
+    }
+}
+
+#productType {
+    margin-top: 2em;
+    gap: .5em;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items: center;
+    select, input {
+        font-size: medium;
+        box-sizing: border-box;
+        width: 80%;
+        height: 2rem;
+        border: none;
+        background-color: white;
+        border-radius: 5px;
+    }
+    button {
+        border-radius: 5px;
+        height: 2rem;
+        width: 80%;
+        background-color: #d1d1d1;
+        border: none;
+        transition: background-color .2s;
+    }
+    button:hover {
+        background-color: #a3a3a3;
+    }
+}
+
+.main-dark-mode {
+    label {
+        border: 1px solid #181717; 
+    }
+    #newArticle button:hover ,#productType button:hover, .inputForm button:hover{
+        background-color: #08BC08;
+    }
+
+    #newArticle input[type='file'] {
+        background-color: #2D2B2B;
+    }
+}

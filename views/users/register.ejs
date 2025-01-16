@@ -1,37 +1,44 @@
 <%- include("../partials/head") %>
-<body>
 <%- include("../partials/header") %>
 <link rel="stylesheet" href="/stylesheets/users/register.css">
-    <main>
-    <form action="register">
-      <h4>No estas registrado? Por favor, completá los campos con tus datos</h4>
-      <div class="primera">
-        <input type="text" name="" id="mail" placeholder="E-mail" required>
-        <input type="password" name="" id="password" placeholder="Contraseña" required>
-        <input type="password" name="" id="confPassword" placeholder="Repite tu contraseña" required>
-      </div>
-      <div class="segunda">
-        <input type="text" name="" id="name" placeholder="Nombre" required>
-        <input type="text" name="" id="lastname" placeholder="Apellido" required>
-      </div>
-      <div class="tercera">
-        <select name="provincia" id="prov">
-          <option value="" disabled selected >Selecciona una opción</option>
-          <option value="bs-as">Buenos Aires</option>
-          <option value="er">Entre Ríos</option>
-          <option value="sf">Santa Fé</option>
-        </select>
-        <input type="text" name="" id="locality" placeholder="Localidad">
-        <input type="tel" name="" id="postal" placeholder="Código postal">
-      </div>
-      <div class="cuarta">
-        <input type="text" name="" id="adress" placeholder="Direccion" >
-        <input type="tel" name="" id="contactnumber" placeholder="Teléfono de contacto" required>
-      </div>
-      <button type="submit">Registrar</button>
-    </form>
-    </main>
-    <%- include("../partials/footer") %>
-    <script src="/javascripts/register.js"></script>
-  </body>
-</html>
+<main>
+<form action="/users/register" method="POST">
+  <h4>No estas registrado? Por favor, completá los campos con tus datos</h4>
+  <div class="primera">
+    <input type="text" name="mail" id="mail" placeholder="E-mail" >
+    <input type="password" name="password" id="password" placeholder="Contraseña" >
+    <input type="password" name="confPassword" id="confPassword" placeholder="Repite tu contraseña" >
+  </div>
+  <div class="segunda">
+    <input type="text" name="name" id="name" placeholder="Nombre" >
+    <input type="text" name="lastname" id="lastname" placeholder="Apellido" >
+  </div>
+  <div class="tercera">
+    <select name="provincia" id="prov">
+      <option value="" disabled selected >Selecciona una opción</option>
+      <option value="bs-as">Buenos Aires</option>
+      <option value="er">Entre Ríos</option>
+      <option value="sf">Santa Fé</option>
+    </select>
+    <input type="text" name="" id="location" placeholder="Localidad">
+    <input type="tel" name="" id="postal" placeholder="Código postal">
+  </div>
+  <div class="cuarta">
+    <input type="text" name="" id="adress" placeholder="Direccion" >
+    <input type="tel" name="tel" id="contactnumber" placeholder="Teléfono de contacto" >
+  </div>
+  <div class="errors">
+  <% if (locals.errors) {%>
+    <ul> 
+    <% for (const key in errors) {%>
+      <% if (errors[key].msg) { %>
+        <li><%=errors[key].msg%></li>
+    <%}}; %>
+    </ul>
+    <% } %>
+  </div>
+  <button type="submit">Registrar</button>
+</form>
+</main>
+<script src="/javascripts/register.js"></script>
+<%- include("../partials/footer") %>

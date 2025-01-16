@@ -1,0 +1,51 @@
+<%- include("../partials/head") %>
+<%- include("../partials/header") %>
+<link rel="stylesheet" href="/stylesheets/users/admin.css">
+    <main>
+        <form id="choice">
+            <label ><input type="radio" name="opcion" value="producto" onchange="selectType(this.value)"> Producto</label> 
+            <label ><input type="radio" name="opcion" value="usuario" onchange="selectType(this.value)"> Usuario </label>
+        </form>
+        <section id="toDo">
+            <form class="products hidden">
+                <label><input type="radio" name="opcion" value="editProduct" onchange="ToDo(this.value)">Editar</label>
+                <label><input type="radio" name="opcion" value="addProduct" onchange="ToDo(this.value)">Añadir</label>
+                <label><input type="radio" name="opcion" value="deleteProduct" onchange="ToDo(this.value)">Eliminar</label>
+            </form>
+            <form class="users hidden">
+                <label><input type="radio" name="opcion" value="editUser" onchange="ToDo(this.value)">Editar</label>
+                <label><input type="radio" name="opcion" value="deleteUser" onchange="ToDo(this.value)">Elminar</label>
+            </form>
+        </section>
+        <!-- PRODUCTOS -->
+        <form class="hidden" id="productType">
+            <select name="tipo">
+                <option disabled selected>Tipo de producto</option>
+                <option value="placa-de-video">Placa de video</option>
+                <option value="procesador">Procesador</option>
+                <option value="gabinete">Gabinete</option>
+            </select>
+            <input type="text" name="nombre" placeholder="Buscar por nombre del ariticulo" >
+            <button type="submit">Buscar</button> 
+        </form>
+        <form class="hidden" id="newArticle">
+            <input type="text" name="nombre" id="" placeholder="Nombre del ariticulo">
+            <input type="text" name="fabricante" id="" placeholder="Fabricante del ariticulo">
+            <select name="tipo" id="" >
+                <option disabled selected>Tipo de producto</option>
+                <option value="placa-de-video">Placa de video</option>
+                <option value="procesador">Procesador</option>
+                <option value="gabinete">Gabinete</option>
+            </select>
+            <input type="number" name="precio" id=""placeholder="Precio del ariticulo">
+            <input type="file" accept=".png, .jpg">
+            <button type="submit">Confirmar</button>
+        </form>
+        <!-- USUARIOS -->
+        <form action="" class="hidden inputForm">
+            <input type="text" class="inputUser" placeholder="Buscar por email">
+            <button type="submit">Buscar</button>
+        </form>
+    </main>
+    <script src="/javascripts/admin.js"></script>
+    <%- include("../partials/footer") %>

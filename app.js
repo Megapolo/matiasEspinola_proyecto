@@ -3,12 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session')
+require('dotenv').config()
 
 var cartRouter = require('./routes/products/cart_router');
 var indexRouter = require('./routes/index_router');
-var loginRouter = require('./routes/users/login_router');
+var userRouter = require('./routes/users_router');
 var productRouter = require('./routes/products/product_router');
-var registerRouter = require('./routes/users/register_router');
 var searchRouter = require('./routes/products/search_router');
 
 var app = express();
@@ -23,12 +24,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: process.env.SECURE,
+  resave: false,
+  saveUninitialized: true,
+}))
+
 app.use('/cart', cartRouter)
 app.use('/', indexRouter);
 app.use('/index', indexRouter);
-app.use('/login', loginRouter)
+app.use('/users', userRouter)
 app.use('/product', productRouter)
-app.use('/register', registerRouter)
 app.use('/products', searchRouter);
 
 // catch 404 and forward to error handler
