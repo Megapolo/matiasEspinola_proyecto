@@ -123,7 +123,7 @@ article {
         transition: 0.2s;
     }
     img {
-        max-width: 220px;
+        max-width: 100%;
         border-radius: 6px 6px 0px 0px;
     }
     button {
@@ -189,5 +189,42 @@ article:hover {
     }
     article:hover {
         box-shadow: 0px 0px 12px #08BC08;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    aside {
+        display: none;
+    }
+    .articles {
+        grid-template-columns: repeat(2, 1fr); 
+        margin-left: 30px;
+    }
+    article {
+        width: 130px;
+        p {
+            bottom: 27%;
+            left: 30%;
+        }
+    }
+}
+
+@media screen and (max-width: 1025px) {
+    aside {
+        width: 80%;
+        h4, a {
+            font-size: small;
+        }
+    }
+    .articles {
+        grid-template-columns: repeat(3, 1fr); 
+        margin-left: 70px;
+    }
+    article {
+        width: 130px;
+        p {
+            bottom: 27%;
+            left: 30%;
+        }
     }
 }

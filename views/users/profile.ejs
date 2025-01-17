@@ -1,0 +1,10 @@
+<%- include("../partials/head") %>
+<%- include("../partials/header")%>
+ <h1>Llegaste al perfil :D</h1>
+ <% if (locals.name) {%>
+ <h3><%= name%></h3>
+ <% }%>
+ <% if (locals.lastname) {%>
+    <h3><%= lastname%></h3>
+    <% }%>
+<%- include("../partials/footer") %>

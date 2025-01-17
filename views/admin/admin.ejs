@@ -18,14 +18,14 @@
             </form>
         </section>
         <!-- PRODUCTOS -->
-        <form class="hidden" id="productType">
+        <form class="hidden" id="productType" name="search">
             <select name="tipo">
                 <option disabled selected>Tipo de producto</option>
                 <option value="placa-de-video">Placa de video</option>
                 <option value="procesador">Procesador</option>
                 <option value="gabinete">Gabinete</option>
             </select>
-            <input type="text" name="nombre" placeholder="Buscar por nombre del ariticulo" >
+            <input type="text" name="name" placeholder="Buscar por nombre del ariticulo" >
             <button type="submit">Buscar</button> 
         </form>
         <form class="hidden" id="newArticle">
@@ -46,6 +46,37 @@
             <input type="text" class="inputUser" placeholder="Buscar por email">
             <button type="submit">Buscar</button>
         </form>
+        <% if (locals.products) {%>
+        <section id="productList" class="hidden">
+            <% products.forEach(element => { %>
+            <a href="/product/<%=element.nombre%>">
+                <article>
+                    <img src="<%=element.img%>" alt="<%=element.nombre%>">
+                    <h4><%=element.nombre%></h4>
+                    <p><%=element.tipo%></p>
+                    <p><%=element.fabricante%></p>
+                    <p>$ <%=element.precio%></p>
+                    <p>ID: <%=element.id%></p>
+                </article>
+            </a>
+            <% }); %>
+        </section>
+        <%}%>
+        <% if (locals.users) {%>
+            <section id="usersList" class="hidden">
+                <% users.forEach(element => { %>
+                <a href="">
+                    <div>
+                        <h4 id="elementName"><%=element.name%></h4>
+                        <h4 id="elementLastname"><%=element.lastname%></h4>
+                        <h4 id="elementEmail"><%=element.email%></h4>
+                        <h4 id="elementTel">Tel: <%=element.tel%></h4>
+                        <h4 id="elementStatus">Status: <%=element.status%></h4>
+                </div>
+            </a>
+            <% }); %>
+        </section>
+        <%}%>
     </main>
     <script src="/javascripts/admin.js"></script>
     <%- include("../partials/footer") %>

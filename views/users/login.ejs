@@ -1,20 +1,26 @@
 <%- include("../partials/head") %>
-  <body>
     <%- include("../partials/header")%>
     <link rel="stylesheet" href="/stylesheets/users/login.css">
     <main>
-    <form action="login">
+    <form action="/users/login" method="POST">
       <h3>Inicio de sesion</h3>
-      <input type="text" id="email" placeholder="Ingrese su Email" required>
-      <input type="text" id="password" placeholder="Ingrese su contaseña" required>
+      <input type="text" name="email" id="email" placeholder="Ingrese su Email" value="<%= locals.email ? email : ''%>" required>
+      <input type="text" name="password" id="password" placeholder="Ingrese su contaseña" required>
+      <% if (locals.errors) {%>
+        <ul>
+        <% for (const key in errors) {%>
+          <% if (errors[key].msg) { %>
+            <li><%=errors[key].msg%></li>
+        <%}}; %>
+        </ul>
+        <% } %>
       <div class="buttons">
       <a href="/users/register">Registrarme</a>
       <a href="/users/login">Olvide mi clave</a>
       </div>
       <button type="submit">Iniciar sesion</button>
     </form>
-    
-    <script src="/public/javascripts/app.js"></script>
+  
   </main>
     <%- include("../partials/footer") %>
   </body>

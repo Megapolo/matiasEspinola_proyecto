@@ -2,6 +2,7 @@ main {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
+    transition: background-color .2s;
     form {
         justify-self: center;
         margin-top: 4em;
@@ -13,6 +14,7 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
+        transition: background-color .2s;
         h4{
             padding-top: 2em;
         }
@@ -21,12 +23,14 @@ main {
             border: none;
             height: 5vh;
             font-size: 0.9rem;
+            transition: background-color .2s;
         }
         select {
             border-radius: 5px;
             border: none;
             outline: none;
-            color:#757569
+            color:#757569;
+            transition: background-color .2s;
         }
         div {
             display: flex;
@@ -92,7 +96,7 @@ main {
     #prov {
         width: 40%;
     }
-    #locality {
+    #location {
         width: 31%;
     }
     #postal {

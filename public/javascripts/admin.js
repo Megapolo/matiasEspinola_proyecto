@@ -5,6 +5,8 @@ const elements = {
     productNew: document.querySelector('#newArticle'),
     usersInput: document.querySelector('.inputForm'),
     productName: document.querySelector('.inputProduct'),
+    productList: document.querySelector('#productList'),
+    usersList: document.querySelector('#usersList'),
 };
 
 const HIDDEN_CLASS = 'hidden';
@@ -42,10 +44,14 @@ const selectType = (value) => {
         ensureHidden(elements.users);
         ensureHidden(elements.usersInput);
         ensureHidden(elements.productType);
+        ensureHidden(elements.productList);
+        ensureHidden(elements.usersList);
     } else if (isUser) {
         toggleHidden(elements.users);
         ensureHidden(elements.products);
         ensureHidden(elements.productType);
+        ensureHidden(elements.productList);
+        ensureHidden(elements.usersList);
         productNewToggle();
         ensureHidden(elements.usersInput);
     }
@@ -59,11 +65,15 @@ const ToDo = (value) => {
         case 'editProduct':
         case 'deleteProduct':
             ensureVisible(elements.productType);
+            ensureVisible(elements.productList);
+            ensureHidden(elements.usersList);
             productNewToggle();
             break;
 
         case 'addProduct':
             ensureHidden(elements.productType);
+            ensureHidden(elements.productList);
+            ensureHidden(elements.usersList);
             ensureVisible(elements.productNew);
             break;
 
@@ -72,6 +82,8 @@ const ToDo = (value) => {
             ensureHidden(elements.productType);
             productNewToggle();
             ensureVisible(elements.usersInput);
+            ensureVisible(elements.usersList);
+            ensureHidden(elements.productList)
             break;
 
         default:

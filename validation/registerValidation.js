@@ -1,13 +1,20 @@
 const {body} = require('express-validator')
 const fs = require("fs");
 const dataBase = fs.readFileSync('data/users.json', 'utf-8');
-const Users = JSON.parse(dataBase)
+const users = JSON.parse(dataBase)
 
 let pass = ''
 
 module.exports = [
-    body('mail').notEmpty().withMessage('El campo "E-mail" no puede estar vacio.')
-    .isEmail().withMessage('El correo electronico no es valido.'),
+    body('email').notEmpty().withMessage('El campo "E-mail" no puede estar vacio.')
+    .isEmail().withMessage('El correo electronico no es valido.')
+    .custom((value) => {
+        const user = users.find(user => user.email == value);
+        if (user) {
+            throw new Error('Ya existe una cuenta con ese E-mail');
+        }
+        return true;
+    }).bail(),
 
 
     body('password').notEmpty().withMessage('El campo "Contraseña" no puede estar vacio.').bail()

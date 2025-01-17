@@ -141,3 +141,43 @@ nav ul li i:hover {
 }
 
 }
+
+@media screen and (max-width: 768px) {
+    #logo {
+        width: 70px;
+    }
+
+    .navbar {
+        li {
+            display: none;
+        }
+        li:first-child {
+            display: inline;
+        }
+    }
+
+
+    #carrito, #login {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1025px) {
+    #logo {
+        width: 70px;
+    }
+
+    .navbar {
+        li {
+            display: none;
+        }
+        li:first-child {
+            display: inline;
+        }
+    }
+
+
+    #carrito, #login {
+        display: none;
+    }
+}

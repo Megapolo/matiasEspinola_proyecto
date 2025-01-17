@@ -5,13 +5,13 @@
 <form action="/users/register" method="POST">
   <h4>No estas registrado? Por favor, completá los campos con tus datos</h4>
   <div class="primera">
-    <input type="text" name="mail" id="mail" placeholder="E-mail" >
-    <input type="password" name="password" id="password" placeholder="Contraseña" >
-    <input type="password" name="confPassword" id="confPassword" placeholder="Repite tu contraseña" >
+    <input type="text" name="email" id="mail" placeholder="E-mail" value="<%= locals.email ? email : ''%>" >
+    <input type="password" name="password" id="password" placeholder="Contraseña" value="<%= locals.password ? password : '' %>">
+    <input type="password" name="confPassword" id="confPassword" placeholder="Repite tu contraseña" value="<%= locals.password ? password : ''%>">
   </div>
   <div class="segunda">
-    <input type="text" name="name" id="name" placeholder="Nombre" >
-    <input type="text" name="lastname" id="lastname" placeholder="Apellido" >
+    <input type="text" name="name" id="name" placeholder="Nombre" value="<%= locals.name ? name : '' %>">
+    <input type="text" name="lastname" id="lastname" placeholder="Apellido" value="<%= locals.lastname ? lastname : ''%>">
   </div>
   <div class="tercera">
     <select name="provincia" id="prov">
@@ -25,7 +25,7 @@
   </div>
   <div class="cuarta">
     <input type="text" name="" id="adress" placeholder="Direccion" >
-    <input type="tel" name="tel" id="contactnumber" placeholder="Teléfono de contacto" >
+    <input type="tel" name="tel" id="contactnumber" placeholder="Teléfono de contacto" value="<%= locals.tel ? tel : ''%>">
   </div>
   <div class="errors">
   <% if (locals.errors) {%>

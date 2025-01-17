@@ -137,6 +137,84 @@ label {
     }
 }
 
+#productList {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    display: grid;
+    grid-template-columns: repeat(3, 266px);
+    width: 838px;
+    gap: 20px; 
+    justify-items: center; 
+    align-items: center; 
+    article {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        width: 100%;
+        height: fit-content;
+        img {
+            align-self: center;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            width: 100%;
+            height: auto;
+        }
+        a,h4,p {
+            margin: 0;
+            padding: 0;
+            margin-top: .5em;
+            margin-bottom: .5em; 
+            color: black;
+        }
+        p:last-child {
+            margin-bottom: 1em;
+        }
+        article:hover {
+            box-shadow: 0 0 8px black;
+            border:5px #08BC08;
+        }
+    
+    }
+}
+
+#usersList {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    gap: .5em;
+    div {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: flex;
+    }
+    a {
+        color: black;
+    }
+}
+
+#elementName {
+    width: 10rem;
+    margin-left: .5em;
+}
+#elementLastname {
+    width: 10rem
+}
+#elementEmail {
+    width: 18rem
+}
+#elementTel {
+    width: 10rem
+}
+#elementStatus {
+    width: 10rem
+}
+
 .main-dark-mode {
     label {
         border: 1px solid #181717; 
@@ -149,3 +227,5 @@ label {
         background-color: #2D2B2B;
     }
 }
+
+

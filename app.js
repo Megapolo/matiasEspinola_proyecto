@@ -8,9 +8,10 @@ require('dotenv').config()
 
 var cartRouter = require('./routes/products/cart_router');
 var indexRouter = require('./routes/index_router');
-var userRouter = require('./routes/users_router');
+var userRouter = require('./routes/users/users_router');
 var productRouter = require('./routes/products/product_router');
 var searchRouter = require('./routes/products/search_router');
+var adminRouter = require('./routes/users/admin_router');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use('/cart', cartRouter)
 app.use('/', indexRouter);
 app.use('/index', indexRouter);
 app.use('/users', userRouter)
+app.use('/admin', adminRouter)
 app.use('/product', productRouter)
 app.use('/products', searchRouter);
 
