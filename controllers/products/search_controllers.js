@@ -11,7 +11,7 @@ const searchProducts = function(search) {return productos.filter(element =>
 
 const search = (req, res, next) => {
   const name = req.query.search.toUpperCase()
-  const producto = searchFunction(name)
+  const producto = searchProducts(name)
   const fabricante = [...new Set(producto.map(element => element.fabricante))];
   if (producto.length >= 0) {
     return res.render('products/search', {fabricante, name, producto, title: "Búsqueda"});

@@ -1,0 +1,25 @@
+<%- include("../partials/head") %>
+<%- include("../partials/header") %>
+<h1>Nuevo Producto</h1>
+
+<form action="/admin/products/add" method="POST">
+    <label>Nombre del artículo</label>
+    <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+    <label>Fabricante</label>
+    <input type="text" name="fabricante" id="fabricante"placeholder="Fabricante">
+    <label>Tipo de artículo </label>
+    <select name="tipo" id="tipo">
+        <option value='' selected disabled>Tipo de producto</option>
+        <option value="gabinete">Gabinete</option>
+        <option value="placa-de-video">Placa de Video</option>
+        <option value="procesador">Procesador</option>
+    </select>
+    <label>Precio del articulo</label>
+    <input type="text" name="precio" id="precio" placeholder="Precio sin '$'">
+    <label>Imagen del articulo <small>(no hay presupuesto para una vista previa)</small></label>
+    <input type="file" name="img" id="img" accept=".jpg,.png">
+    <label>Descuento</label>
+    <input type="text" name="descuento" id="descuento">
+    <button type="submit">Aceptar y publicar</button>
+</form>
+<%- include("../partials/footer") %>

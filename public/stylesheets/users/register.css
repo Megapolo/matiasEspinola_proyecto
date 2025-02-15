@@ -16,6 +16,7 @@ main {
         align-items: center;
         transition: background-color .2s;
         h4{
+            transition: color .2s;
             padding-top: 2em;
         }
         input {

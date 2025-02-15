@@ -1,0 +1,33 @@
+<%- include("../partials/head") %>
+<%- include("../partials/header")%>
+<link rel="stylesheet" href="/stylesheets/products/admin_product.css">
+<main>
+ <% if (locals.product) {%>
+    <h1 id="titulo">Editor de producto</h1>
+ <form action="/admin/products/edit/<%= product.id%>?_method=PUT" method="POST" id="formulario">
+    <img src="<%= product.img%>" alt="<%=product.nombre%>">
+    <li>ID:</li>
+    <span><%=product.id%></span>
+    <li>Nombre</li>
+    <input type="text" name="nombre" id="<%= product.nombre%>" value="<%= product.nombre%>">
+    <li>Fabricante</li>
+    <input type="text" name="fabricante" value="<%=product.fabricante%>">
+    <li>Tipo de producto</li>
+    <input type="text" name="tipo" value="<%= product.tipo%>">
+    <li>Precio</li>
+    <input type="text" name="precio" id="precio" value="<%=product.precio%>">
+    <li>% De descuento</li>
+    <input type="text" name="descuento" id="descuento" value='<%= product.descuento ? product.descuento : 0 %>'>
+    <p class="hidden" id="total"></p>
+    <li>Url de imagen (por ahora)</li>
+    <!-- No me funciona multer 🤠, sigo viendo el por que -->
+    <input type="text" name="img" id="<%= product.img%>"value="<%=product.img%>">
+    <button type="submit">Aceptar cambios</button>
+ </form>
+ <form action="/admin/products/delete/<%= product.id%>?_method=DELETE" method="POST">
+   <button type="submit" id="delete">Eliminar artículo</button>
+ </form>
+ <% }%>
+</main>
+<script src="/javascripts/admin.js"></script>
+<%- include("../partials/footer") %>

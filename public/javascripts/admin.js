@@ -2,7 +2,7 @@ const elements = {
     products: document.querySelector('.products'),
     users: document.querySelector('.users'),
     productType: document.querySelector('#productType'),
-    productNew: document.querySelector('#newArticle'),
+    productNew: document.querySelector('.newArticle'),
     usersInput: document.querySelector('.inputForm'),
     productName: document.querySelector('.inputProduct'),
     productList: document.querySelector('#productList'),
@@ -63,7 +63,7 @@ const ToDo = (value) => {
 
     switch (value) {
         case 'editProduct':
-        case 'deleteProduct':
+        case 'seeProduct':
             ensureVisible(elements.productType);
             ensureVisible(elements.productList);
             ensureHidden(elements.usersList);
@@ -91,3 +91,23 @@ const ToDo = (value) => {
             break;
     }
 };
+
+const descuento = document.getElementById('descuento')
+const precio = document.getElementById('precio')
+const total = document.getElementById('total')
+
+descuento.addEventListener('change', function () {
+    console.log('Dentro del evento')
+    let precioValor = parseFloat(precio.value) || 0
+    let descuentoValor = parseFloat(this.value) || 0
+
+    if (descuentoValor !== 0) {
+        console.log('Dentro del if del evento')
+        let totalidad = precioValor - (precioValor * (descuentoValor / 100))
+        total.classList.remove('hidden');
+        total.innerText = `Total: ${totalidad.toFixed(2)}`
+    } else {
+        console.log('Dentro del else del evento')
+        total.classList.add('hidden')
+    }
+});

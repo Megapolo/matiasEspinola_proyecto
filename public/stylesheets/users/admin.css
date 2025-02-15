@@ -14,12 +14,13 @@ main {
     transition: background-color .2s;
 }
 
-label {
+label, .products a {
     display: inline-block;
     padding: 10px 20px;
     border: 1px solid #ccc; 
     border-radius: 5px;
-    cursor: pointer; 
+    cursor: pointer;
+    color: black; 
 }
 
 #choice {

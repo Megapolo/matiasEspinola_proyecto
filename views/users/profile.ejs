@@ -1,10 +1,60 @@
 <%- include("../partials/head") %>
 <%- include("../partials/header")%>
- <h1>Llegaste al perfil :D</h1>
- <% if (locals.name) {%>
- <h3><%= name%></h3>
- <% }%>
- <% if (locals.lastname) {%>
-    <h3><%= lastname%></h3>
-    <% }%>
+<link rel="stylesheet" href="/stylesheets/users/profile.css">
+<main>
+ <h1>Perfil de usuario</h1>
+ <% if (locals.user) {%>
+<div class="container">
+   <form action="/users/profile/<%= user.id %>?_method=PUT" method="POST" id="form">
+      <div>
+         <label for="name">Nombre</label>
+         <input type="text" name="name" placeholder="<%= user.name%>" id="username" value="<%= user.name %>">
+      </div>
+      <div>
+         <label for="lastname">Apellido</label>
+         <input type="text" name="lastname" placeholder="<%= user.lastname%>" id="lastname" value="<%= user.lastname %>">
+      </div>
+      <div>
+         <label for="email">Email</label>
+         <input type="text" name="email" placeholder="<%= user.email%>" id="email" value="<%= user.email %>">
+      </div>
+      <div>
+         <label for="tel">Teléfono de contacto</label>
+         <input type="text" name="tel" placeholder="<%= user.tel%>" id="tel" value="<%= user.tel %>">
+      </div>
+      <div>
+         <label for="provincia">Provincia</label>
+         <select name="provincia" id="provincia">
+            <% provincias.forEach(provincia => { %>            
+               <option value="<%= provincia.id %>" <%= locals.user && locals.user.provincia && locals.user.provincia == provincia.id ? "selected" : "" %>><%= provincia.nombre%></option>
+            <% }); %>
+         </select>
+      </div>
+      <div>
+         <label for="localidad">Localidad</label>
+         <select name="localidad" id="localidad">
+            <% localidades.forEach(localidad => { %>
+               <option value="<%= localidad.id %>" <%= locals.user && locals.user.localidad && locals.user.localidad == localidad.id ? "selected" : "" %>><%= localidad.nombre%></option>
+               <% }); %>
+         </select>
+      </div>
+      <div>
+         <label for="contrasena">Contaseña</label>
+         <input type="password" name="contrasena" id="contrasena">
+      </div>
+      <div>
+         <label for="contrasena2">Contaseña</label>
+         <input type="password" name="contrasena2" id="contrasena2">
+      </div>
+      <div>
+         <label for="avatar">Avatar</label>
+         <input type="file" name="avatar" id="avatar">
+      </div>
+      <button type="submit">Aceptar cambios</button>
+   </form>
+ <li><a href="/users/logout">Log-out</a></li>
+</div>
+<% }%>
+</main>
+<script src="/javascripts/profile.js"> </script>
 <%- include("../partials/footer") %>
