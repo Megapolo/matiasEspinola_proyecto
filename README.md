@@ -1,11 +1,10 @@
 # matiasEspinola_proyecto
 
-Sprint 3:
+Sprint 5: 
 
-Para acceder al modo admin como todavía no comprendo bien las sesiones, se accede con el link:
+Se puede seguir accediendo a la pestaña de admin con el link (http://localhost:3000/users/admin), pero ahora tambien con el usuario "megapolo@gmail.com" y contraseña "Megapolo1@"
 
-http://localhost:3000/users/admin
-
+y tuve algun error que hice que multer deje de funcionar. Eric si ves esto es porque el error todavía está 😔
 
 Tematica: 
 La tematica en si seria una página de venta de componentes y accesorios de PC.
