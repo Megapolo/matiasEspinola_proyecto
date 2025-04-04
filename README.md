@@ -2,7 +2,9 @@
 
 Sprint 6:
 
-Soy conciente de que me falta la parte de los comandos SQL para generar la base de datos mediante el archivo leido por WorkBench, sin embargo están las migraciones y seeders necesarias para correr el comando:
+Ya adjunté los archivos SQL.
+
+~~Soy conciente de que me falta la parte de los comandos SQL para generar la base de datos mediante el archivo leido por WorkBench, sin embargo están~~ las migraciones y seeders necesarias para correr el comando:
 
 "npm run db-reset" 
 
