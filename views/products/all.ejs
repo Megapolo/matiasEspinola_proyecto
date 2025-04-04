@@ -41,7 +41,11 @@
       
     <% productos.forEach(product => { %>
       <article class="product-box">
-        <a href="/product/<%=product.nombre%>"><img src="<%=product.img%>" alt="<%=product.nombre%>">
+        <a href="/product/<%=product.nombre%>"><% if (product.imagenes && product.imagenes.length > 0) { %>
+          <img src="<%= product.imagenes[0].name %>" alt="<%= product.nombre %>">
+        <% } else { %>
+          <img src="<%= product.img %>" alt="<%= product.nombre %>">
+        <% } %>
         <h4 class="nombre"><%= product.nombre %></h4>
         <% if (product.descuento) {%>
           <% let precioActualizado = product.precio - product.precio*product.descuento/100 %>

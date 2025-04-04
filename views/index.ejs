@@ -11,16 +11,19 @@
       <i class="fa-solid fa-arrow-left"></i>
       <i class="fa-solid fa-arrow-right"></i>
       <div class="destacados">
-        <% producto.forEach(element => { %>
-          <article>
-          <a href="/product/<%=element.nombre%>">
-          <img src="<%= element.img %>"> 
-          <h3><%= element.nombre %></h3>
-          <p>$<%= element.precio %></p>
-          <p class="type"><%=element.tipo.replaceAll("-", " ")%></p>
-        </a>
-        </article>
-        <%}); %>
+        <% productos.forEach(product => { %>
+          <article class="product-box">
+            <a href="/product/<%= product.nombre %>">
+              <% if (product.imagenes.length > 0) { %>
+                <img src="<%= product.imagenes[0] %>" alt="<%= product.nombre %>">
+              <% } else { %>
+                <img alt="Imagen no disponible">
+              <% } %>
+              <h4 class="nombre"><%= product.nombre %></h4>
+              <h4 class="precio"><strong>$ <%= product.precio %></strong></h4> 
+            </a>
+          </article>
+        <% }) %>
       </div>
     </div>
     <script src="/javascripts/app.js"></script>

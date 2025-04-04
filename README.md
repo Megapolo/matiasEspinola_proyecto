@@ -4,7 +4,9 @@ Sprint 5:
 
 Se puede seguir accediendo a la pestaña de admin con el link (http://localhost:3000/users/admin), pero ahora tambien con el usuario "megapolo@gmail.com" y contraseña "Megapolo1@"
 
-y tuve algun error que hice que multer deje de funcionar. Eric si ves esto es porque el error todavía está 😔
+Este sprint estuve mas ajustado de tiempos de lo habitual, por lo que no tuve el tiempo suficiente para hacer todo como me gustaría pero creo que lo pedido en el sprint está completo.
+
+Tuve algun error que hice que multer deje de funcionar. Eric si ves esto es porque el error todavía está 😔.
 
 Tematica: 
 La tematica en si seria una página de venta de componentes y accesorios de PC.

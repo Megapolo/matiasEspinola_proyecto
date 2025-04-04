@@ -1,16 +1,7 @@
-const path = require("path");
-const directory = path.join(__dirname, "../../data/users.json");
+const db = require("../../database/models");
+const { User } = db;
 const { validationResult } = require("express-validator");
-const {
-  readFile,
-  writeFile,
-  parseFile,
-  stringifyFile,
-} = require("../../utilities/filesystem");
 const bcrypt = require("bcrypt");
-const { v4: uuidv4 } = require('uuid');
-
-const users = parseFile(readFile(directory));
 
 const register = (req, res, next) => {
   res.render('users/register',{ title: 'Registro'});
@@ -18,40 +9,92 @@ const register = (req, res, next) => {
 
 const store = async (req, res, next) => {
   const errors = validationResult(req).mapped();
-  const {email,password,name,lastname,tel,provincia,location,postal,adress} = req.body
+  const { email, password, name, lastname, tel, provincia, localidad, address } = req.body;
+
   if (!validationResult(req).isEmpty()) {
-    console.log(errors.email)
-    return res.render("users/register", { title: "Registro", errors, email, password, name, tel, lastname});
+    return res.render("users/register", {
+      title: "Registro",
+      errors,
+      email,
+      password,
+      name,
+      tel,
+      lastname
+    });
   }
-  const hash = await bcrypt.hash(password, 10)
-  users.push({id:uuidv4() ,email, password:hash, name, lastname, tel, status:'user', provincia, location, postal, adress})
-  await writeFile(directory,stringifyFile(users)) 
-  res.redirect("/users/login")
-}
+
+  try {
+    const hash = await bcrypt.hash(password, 10);
+
+    await User.create({
+      email,
+      password: hash,
+      name,
+      lastname,
+      tel,
+      provincia,
+      localidad,
+      address,
+      rolId: 2,
+      code: '',
+      img: ''   
+    });
+
+    res.redirect("/users/login");
+  } catch (error) {
+    console.error("Error al registrar usuario:", error);
+    res.status(500).send("Error interno del servidor");
+  }
+};
 
 const load = function (req, res, next){
   res.render('users/login', {title: 'Login'})
 }
 
-const login = (req, res, next) => {
-  const {email} = req.body;
+const login = async (req, res, next) => {
+  const { email, password, rememberMe } = req.body;
   const errores = validationResult(req);
-  if (errores.array().length > 0) {
-    res.render("users/login", { title: 'Login', errors: errores.mapped(),email});
-  } else {
-    const user = users.find(element => element.email === email);
-    const { name, lastname, id } = user;
-    req.session.user = { email, name, lastname, id};
-    if (req.body.rememberMe) {
-      res.cookie("user", { email, name, lastname, id}, { maxAge: 1000 * 60 * 30 });
-    }
-    if (user.status == 'admin') {
-      res.redirect("/admin/products");
-    } else {
-      res.redirect(`/users/profile/${id}`);
-    }
+
+  if (!errores.isEmpty()) {
+    return res.render("users/login", {
+      title: "Login",
+      errors: errores.mapped(),
+      email,
+    });
   }
-}
+  try {
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.render("users/login", {
+        title: "Login",
+        errors: { email: { msg: "El usuario no existe" } },
+        email,
+      });
+    }
+    const passwordOk = await bcrypt.compare(password, user.password);
+    if (!passwordOk) {
+      return res.render("users/login", {
+        title: "Login",
+        errors: { password: { msg: "Contraseña incorrecta" } },
+        email,
+      });
+    }
+    const { name, lastname, id, rolId } = user;
+    req.session.user = { email, name, lastname, id };
+    if (rememberMe) {
+      res.cookie("user", { email, name, lastname, id }, { maxAge: 1000 * 60 * 30 });
+    }
+    if (rolId === 1) { // suponiendo que el rol admin tiene id 1
+      return res.redirect("/admin/products");
+    } else {
+      return res.redirect(`/users/profile/${id}`);
+    }
+  } catch (error) {
+    console.error("Error en login:", error);
+    return res.status(500).send("Ocurrió un error interno.");
+  }
+};
 
 const logout = (req, res) => {
   req.session.destroy()
@@ -60,54 +103,77 @@ const logout = (req, res) => {
 }
 
 const profile = async (req, res) => {
-  const users = parseFile(readFile(directory));
   const id = req.params.id;
+
   try {
+    // Buscar al usuario en la base de datos
+    const user = await User.findByPk(id);
 
-    const user = users.find((user) => user.id === id);
-    const response = await fetch("https://apis.datos.gob.ar/georef/api/provincias");
-
-    if (!response.ok) {
-      throw new Error('Hubo un error en el fetch')
+    if (!user) {
+      return res.status(404).render("error", { error: "Usuario no encontrado" });
     }
-    const data = await response.json()
-    const provincias = data.provincias.sort((a,b) => a.nombre.localeCompare(b.nombre));
+
+    // Fetch de provincias
+    const response = await fetch("https://apis.datos.gob.ar/georef/api/provincias");
+    if (!response.ok) {
+      throw new Error("Error al obtener provincias");
+    }
+    const data = await response.json();
+    const provincias = data.provincias.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
     const idProvincia = user.provincia ? user.provincia : provincias[0].id;
 
-    const responseLocalidades = await fetch(`https://apis.datos.gob.ar/georef/api/localidades?provincia=${idProvincia}&max=500`);
+    // Fetch de localidades
+    const responseLocalidades = await fetch(
+      `https://apis.datos.gob.ar/georef/api/localidades?provincia=${idProvincia}&max=500`
+    );
     const dataLocalidades = await responseLocalidades.json();
     const localidades = dataLocalidades.localidades.sort((a, b) => a.nombre.localeCompare(b.nombre));
 
-    res.render("users/profile", { title: "Perfil", user, provincias, localidades });
-
-} catch (error) {
-  console.log("error: ", {error, message:'hola'});      
-  res.render("error", {error, message:'hola'});
-}
-
-}
-
-const update = (req, res) => {
-  console.log("file: ", req.file);
-
-  const users = parseFile(readFile(directory));
-  const id = req.params.id;
-  const user = users.find((user) => user.id === id);
-  req.body.id = id;
-  req.body.avatar = req.file ? req.file.filename : user.avatar;
-  if (req.body.contrasena && req.body.contrasena2) {
-    req.body.contrasena = bcrypt.hashSync(req.body.contrasena, 10);
-  } else {
-    req.body.contrasena = user.contrasena;
+    res.render("users/profile", {
+      title: "Perfil",
+      user,
+      provincias,
+      localidades,
+    });
+  } catch (error) {
+    console.error("Error al cargar perfil: ", error);
+    res.render("error", { error, message: "Hubo un error al cargar el perfil." });
   }
+};
 
-  delete req.body.contrasena2;
+const update = async (req, res) => {
+  const id = req.params.id;
 
-  const index = users.findIndex((user) => user.id === id);
-  users[index] = req.body;
+  try {
+    const user = await User.findByPk(id);
 
-  writeFile(directory, stringifyFile(users));
-  res.send(req.body);
-}
+    if (!user) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+    const updatedData = {
+      ...req.body,
+      avatar: req.file ? req.file.filename : user.avatar
+    };
+
+    if (req.body.contrasena && req.body.contrasena2) {
+      if (req.body.contrasena === req.body.contrasena2) {
+        updatedData.password = await bcrypt.hash(req.body.contrasena, 10);
+      } else {
+        return res.status(400).json({ error: "Las contraseñas no coinciden" });
+      }
+    } else {
+      updatedData.password = user.password; 
+    }
+    delete updatedData.contrasena2;
+
+    await user.update(updatedData);
+
+    res.redirect(`/users/profile/${id}`);
+  } catch (error) {
+    console.error("Error al actualizar usuario:", error);
+    res.status(500).render("error", { error, message: "Error al actualizar los datos del perfil" });
+  }
+};
 
 module.exports = {register, store, load, login, profile, logout, update}

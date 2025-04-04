@@ -1,1 +1,104 @@
-[{"nombre":"GTX-1650","fabricante":"Nvidia","tipo":"Placa-de-video","precio":"160200","descuento":"0","img":"/images/Placas-de-video/GTX-1650.jpg","id":"1"},{"nombre":"RTX-3050","fabricante":"Nvidia","tipo":"Placa-de-video","precio":"350200","descuento":"0","img":"/images/Placas-de-video/RTX-3050.jpg","id":"2"},{"id":3,"nombre":"RTX-4060","fabricante":"Nvidia","tipo":"Placa-de-video","precio":430150,"img":"/images/Placas-de-video/RTX-4060.jpg","descuento":10},{"id":4,"nombre":"RX-6500XT","fabricante":"AMD","tipo":"Placa-de-video","precio":382130,"img":"/images/Placas-de-video/RX-6500XT.jpg"},{"id":5,"nombre":"I3-12100","fabricante":"Intel","tipo":"Procesador","precio":130200,"img":"/images/Procesadores/I3-12100.jpg","descuento":10},{"id":6,"nombre":"I5-10400","fabricante":"Intel","tipo":"Procesador","precio":162400,"img":"/images/Procesadores/I5-10400.jpg"},{"id":7,"nombre":"Ryzen3-5300G","fabricante":"AMD","tipo":"Procesador","precio":120130,"img":"/images/Procesadores/Ryzen3-5300G.jpg"},{"id":8,"nombre":"Ryzen5-5600G","fabricante":"AMD","tipo":"Procesador","precio":180800,"img":"/images/Procesadores/Ryzen5-5600G.jpg"},{"id":9,"nombre":"Orion-4","fabricante":"Fulanito","tipo":"Gabinete","precio":50200,"img":"/images/Gabinete/Orion-4.jpg"},{"id":10,"nombre":"Pucara","fabricante":"Puca","tipo":"Gabinete","precio":65000,"img":"/images/Gabinete/Pucara.jpg","descuento":15},{"id":11,"nombre":"Xigmatek","fabricante":"Xigma","tipo":"Gabinete","precio":96100,"img":"/images/Gabinete/Xigmatek.jpg"},{"id":12,"nombre":"Zer01","fabricante":"Cosme","tipo":"Gabinete","precio":112300,"img":"/images/Gabinete/Zer01.jpg","descuento":35}]
+[
+    {
+        "nombre": "GTX-1650",
+        "fabricante": "Nvidia",
+        "tipo": "1",
+        "precio": "160200",
+        "descuento": "0",
+        "img": "/images/Placas-de-video/GTX-1650.jpg",
+        "id": "1"
+    },
+    {
+        "nombre": "RTX-3050",
+        "fabricante": "Nvidia",
+        "tipo": "1",
+        "precio": "350200",
+        "descuento": "0",
+        "img": "/images/Placas-de-video/RTX-3050.jpg",
+        "id": "2"
+    },
+    {
+        "id": 3,
+        "nombre": "RTX-4060",
+        "fabricante": "Nvidia",
+        "tipo": "1",
+        "precio": 430150,
+        "img": "/images/Placas-de-video/RTX-4060.jpg",
+        "descuento": 10
+    },
+    {
+        "id": 4,
+        "nombre": "RX-6500XT",
+        "fabricante": "AMD",
+        "tipo": "1",
+        "precio": 382130,
+        "img": "/images/Placas-de-video/RX-6500XT.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "I3-12100",
+        "fabricante": "Intel",
+        "tipo": "2",
+        "precio": 130200,
+        "img": "/images/Procesadores/I3-12100.jpg",
+        "descuento": 10
+    },
+    {
+        "id": 6,
+        "nombre": "I5-10400",
+        "fabricante": "Intel",
+        "tipo": "2",
+        "precio": 162400,
+        "img": "/images/Procesadores/I5-10400.jpg"
+    },
+    {
+        "id": 7,
+        "nombre": "Ryzen3-5300G",
+        "fabricante": "AMD",
+        "tipo": "2",
+        "precio": 120130,
+        "img": "/images/Procesadores/Ryzen3-5300G.jpg"
+    },
+    {
+        "id": 8,
+        "nombre": "Ryzen5-5600G",
+        "fabricante": "AMD",
+        "tipo": "2",
+        "precio": 180800,
+        "img": "/images/Procesadores/Ryzen5-5600G.jpg"
+    },
+    {
+        "id": 9,
+        "nombre": "Orion-4",
+        "fabricante": "Fulanito",
+        "tipo": "3",
+        "precio": 50200,
+        "img": "/images/Gabinete/Orion-4.jpg"
+    },
+    {
+        "id": 10,
+        "nombre": "Pucara",
+        "fabricante": "Puca",
+        "tipo": "3",
+        "precio": 65000,
+        "img": "/images/Gabinete/Pucara.jpg",
+        "descuento": 15
+    },
+    {
+        "id": 11,
+        "nombre": "Xigmatek",
+        "fabricante": "Xigma",
+        "tipo": "3",
+        "precio": 96100,
+        "img": "/images/Gabinete/Xigmatek.jpg"
+    },
+    {
+        "id": 12,
+        "nombre": "Zer01",
+        "fabricante": "Cosme",
+        "tipo": "3",
+        "precio": 112300,
+        "img": "/images/Gabinete/Zer01.jpg",
+        "descuento": 35
+    }
+]

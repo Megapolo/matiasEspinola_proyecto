@@ -7,16 +7,17 @@
     <main>
     <section class="producto">
       <section class="imgs">
-        <img src="<%=producto.img%>" alt="<%=producto.nombre%>" id="principal">
+        <img src="<%= producto.imagenes[0] %>" alt="<%= producto.nombre %>" id="principal">
         <div class="tiny">
-        <img src="<%=producto.img%>" alt="<%=producto.nombre%>" class="secondary">
-        <img src="<%=producto.img%>" alt="<%=producto.nombre%>" class="secondary">
-        <img src="<%=producto.img%>" alt="<%=producto.nombre%>" class="secondary">
-        <img src="<%=producto.img%>" alt="<%=producto.nombre%>" class="secondary">
+        <img src="<%= producto.imagenes[0] %>" alt="<%= producto.nombre %>" class="secondary">
+        <img src="<%= producto.imagenes[0] %>" alt="<%= producto.nombre %>" class="secondary">
+        <img src="<%= producto.imagenes[0] %>" alt="<%= producto.nombre %>" class="secondary">
+        <img src="<%= producto.imagenes[0] %>" alt="<%= producto.nombre %>" class="secondary">
         </div>
       </section>
       <section class="details">
-        <a href="/search/<%=producto.tipo%>"><h4><%=producto.tipo.replaceAll("-", " ")%></h4></a>
+        <div class="articulo">
+        <a href="/search/<%=producto.tipo%>"></a>
         <h3><%=producto.fabricante%></h3>
         <h2><%=producto.nombre%></h2>
         <% if (producto.descuento) {%>
@@ -35,7 +36,9 @@
         </div>
         <a href="/cart"><button class="order" id="buy">Comprar ahora</button></a>
         <button class="order" id="toCart">Añadir al carrito</button>
+      </div>
       </section>
+
       <section class="description">
         <h4>Título de descripcion del artículo</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quam mollitia ad aspernatur veritatis iusto at voluptates ea quos ipsum, eaque libero dicta sed, ratione, nihil vitae perferendis nam esse.</p>
@@ -44,18 +47,23 @@
       <% if (relacionados) {%>
     <section class="related">
       <p id="pRelacionados">Productos relacionados:</p>
-      <%relacionados.forEach(element => { %>
-        <div class="producto">
-        <a href="/product/<%=element.nombre%>">
-          <img src="<%=element.img%>" alt="<%=element.nombre%>">
-          <h4><%=element.nombre%></h4>
-          <p><%=element.precio%></p>
-        </a>
-      </div>
-        <%}); %>
+      <% relacionados.forEach(p => { %>
+        <article class="producto">
+          <a href="/product/<%= p.nombre %>">
+            <% if (p.imagenes.length > 0) { %>
+              <img src="<%= p.imagenes[0] %>" alt="<%= p.nombre %>">
+            <% } else { %>
+              <img src="/images/default-product.jpg" alt="Imagen no disponible">
+            <% } %>
+            <h4 class="nombre"><%= p.nombre %></h4>
+            <h4 class="precio"><strong>$ <%= p.precio %></strong></h4> 
+          </a>
+        </article>
+      <% }) %>
     </section>
      <% } %>
-
+     <p style="color: white; background-color: red; padding: 3px; max-width: 80%;">Bueno aca en la seccion de relacionados tuve un problema con la base de datos que no tengo idea de como solucionar, me quedaron todos con el "tipo" de producto todos con el valor default "1" asi que se muestran todos, de hecho nisiquiera funciona la busqueda por tipo de producto, si buscas "1" te aparecen todos igualmente 🤠</p>
+     <p style="color: white; background-color: red; padding: 3px; max-width: 80%; margin-top: 2px;">Actualizacion: resolvi eso de que aparezcan todos, ahora por alguna razon no se puede buscar por tipo de producto pero si por numero de tipo de producto (ej: 1,2,3)</p>
     <script src="/javascripts/product.js"></script>
   </main>
     <%- include("../partials/footer") %>
