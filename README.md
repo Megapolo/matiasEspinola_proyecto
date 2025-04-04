@@ -1,5 +1,15 @@
 # matiasEspinola_proyecto
 
+Sprint 6:
+
+Soy conciente de que me falta la parte de los comandos SQL para generar la base de datos mediante el archivo leido por WorkBench, sin embargo están las migraciones y seeders necesarias para correr el comando:
+
+"npm run db-reset" 
+
+Para resetear o iniciar el proyecto en SQL. No es lo mismo, pero aunque sea funciona (a medias).
+
+Las correcciones del sprint anterior no las apliqué ya que estuve muy ajustado de tiempo estos ultimos meses y se me pasó totalmente, disculpas por ello.
+
 Sprint 5: 
 
 Se puede seguir accediendo a la pestaña de admin con el link (http://localhost:3000/users/admin), pero ahora tambien con el usuario "megapolo@gmail.com" y contraseña "Megapolo1@"
