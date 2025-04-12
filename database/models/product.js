@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     categoryId: DataTypes.INTEGER,
     precio: DataTypes.DECIMAL,
     descuento: DataTypes.FLOAT,
+    descripcion: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'Product',
@@ -28,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true,
     defaultScope: {
       attributes: {
-        // ⚠️ Eliminar categoryId de la query
+        
         exclude: ['categoryId']
       }
     }

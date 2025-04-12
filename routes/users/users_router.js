@@ -13,7 +13,7 @@ router.get('/logout', logout)
 router.get('/register', register);
 router.post('/register', validatorRegister ,store)
 
-router.get('/profile/:id', profile)
+router.get('/profile/:id', loginVerify, profile)
 router.put('/profile/:id', upload.single('avatar') ,update)
 
 module.exports = router;

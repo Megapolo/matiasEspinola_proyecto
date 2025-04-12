@@ -4,8 +4,9 @@
     <main>
     <form action="/users/login" method="POST">
       <h3>Inicio de sesion</h3>
-      <input type="text" name="email" id="email" placeholder="Ingrese su Email" value="<%= locals.email ? email : ''%>" required>
-      <input type="text" name="password" id="password" placeholder="Ingrese su contaseña" required>
+      <input type="text" name="email" id="email" placeholder="Ingrese su Email" oninput="validateAll()" value="<%= locals.email ? email : ''%>" required>
+      <input type="password" name="password" id="password" placeholder="Ingrese su contaseña" oninput="validateAll()" required>
+      <span id="validations" style="height: 2.2rem; margin-top: 10px; color: rgb(41, 41, 41); padding: 5px; border-radius: 2px;"></span>
       <% if (locals.errors) {%>
         <ul>
         <% for (const key in errors) {%>
@@ -23,10 +24,12 @@
         <label for="rememberMe">Mantener sesión abierta</label>
       </div>
 
-      <button type="submit">Iniciar sesion</button>
+      <button id="btn" type="submit" disabled>Iniciar sesion</button>
     </form>
   
   </main>
     <%- include("../partials/footer") %>
   </body>
+  
+<script src="/javascripts/login.js"></script>
 </html>

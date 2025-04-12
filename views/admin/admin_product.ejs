@@ -13,11 +13,18 @@
     <li>Fabricante</li>
     <input type="text" name="fabricante" value="<%=product.fabricante%>">
     <li>Tipo de producto</li>
-    <input type="text" name="tipo" value="<%= product.tipo%>">
+    <select name="tipo" id="tipo">
+      <option value='' disabled <%= !product.tipo ? 'selected' : '' %>>Tipo de producto</option>
+      <option value="3" <%= product.tipo == 3 ? 'selected' : '' %>>Gabinete</option>
+      <option value="1" <%= product.tipo == 1 ? 'selected' : '' %>>Placa de Video</option>
+      <option value="2" <%= product.tipo == 2 ? 'selected' : '' %>>Procesador</option>
+    </select>
     <li>Precio</li>
     <input type="text" name="precio" id="precio" value="<%=product.precio%>">
     <li>% De descuento</li>
     <input type="text" name="descuento" id="descuento" value='<%= product.descuento ? product.descuento : 0 %>'>
+    <li>Descripcion</li>
+    <textarea name="descripcion" id="descripcion"><%=product.descripcion%></textarea>
     <p class="hidden" id="total"></p>
     <li>Url de imagen (por ahora)</li>
     <!-- No me funciona multer 🤠, sigo viendo el por que -->

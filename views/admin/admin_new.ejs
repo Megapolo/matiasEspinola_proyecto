@@ -1,5 +1,7 @@
 <%- include("../partials/head") %>
 <%- include("../partials/header") %>
+<link rel="stylesheet" href="/stylesheets/products/admin_newProduct.css">
+<main>
 <h1>Nuevo Producto</h1>
 
 <form action="/admin/products/add" method="POST">
@@ -19,7 +21,10 @@
     <label>Imagen del articulo <small>(no hay presupuesto para una vista previa)</small></label>
     <input type="file" name="img" id="img" accept=".jpg,.png">
     <label>Descuento</label>
-    <input type="text" name="descuento" id="descuento">
+    <input type="text" name="descuento" id="descuento" placeholder="Descuento en %">
+    <label>Descripción</label>
+    <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción del artículo"></textarea>
     <button type="submit">Aceptar y publicar</button>
 </form>
+</main>
 <%- include("../partials/footer") %>

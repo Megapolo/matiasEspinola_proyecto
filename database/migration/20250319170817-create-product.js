@@ -30,6 +30,9 @@ module.exports = {
       descuento: {
         type: Sequelize.FLOAT(5, 2)
       },
+      descripcion: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

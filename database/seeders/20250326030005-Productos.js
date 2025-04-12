@@ -7,6 +7,7 @@ const productos = productosJson.map(({nombre,fabricante,tipo,precio,descuento}) 
     categoryId: tipo,
     precio: precio,
     descuento: descuento,
+    descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
     createdAt: new Date(),
     updatedAt: new Date()
   }
