@@ -30,4 +30,4 @@ const imageFilter = (req, file, cb) => {
   }
 };
 
-module.exports = multer({storage, imageFilter});
+module.exports = multer({ storage, fileFilter: imageFilter });

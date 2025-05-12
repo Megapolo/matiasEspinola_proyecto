@@ -4,6 +4,8 @@ const isPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9])[A-Za-z\d\S]{8,}$/;
 const isPhone = /^[0-9]{5,20}$/;
 const validationSpan = document.getElementById("validationSpan");
 const getButton = document.getElementById("btn")
+const provinciaInput = document.getElementById("prov");
+const localidadInput = document.getElementById("location");
 
 
 getButton.setAttribute("disabled", "true");
@@ -55,7 +57,6 @@ const RegisterInputValidation = () => {
     }
   }
 
-  console.log(errors.length)
 
   if (errors.length > 0) {
     const listItems = errors.map(err => `<li>${err}</li>`).join('');
@@ -80,4 +81,40 @@ selectElement.addEventListener('change', () => {
   } else {
     selectElement.classList.remove('changed');
   }
+});
+
+provinciaInput.addEventListener('change', async () => {
+    try {
+
+        let idProvincia = provinciaInput.value; // Obtener el valor seleccionado
+
+        const response = await fetch(`https://apis.datos.gob.ar/georef/api/localidades?provincia=${idProvincia}&max=500`);
+        
+        if (!response.ok) throw new Error("Error en la API");
+
+        const data = await response.json();
+
+        // Ordenamos las localidades alfabéticamente
+        const localidades = data.localidades.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+        // Limpiar todas las opciones anteriores
+        localidadInput.innerHTML = ''; 
+
+        // Agregar opción por defecto
+        let defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Seleccione una localidad';
+        localidadInput.appendChild(defaultOption);
+
+        // Agregar nuevas opciones
+        localidades.forEach(loc => {
+            let option = document.createElement('option');
+            option.value = loc.id;
+            option.textContent = loc.nombre;
+            localidadInput.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error('Error al obtener localidades:', error);
+    }
 });

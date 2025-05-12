@@ -54,6 +54,10 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
     const id = req.params.id;
     try {
+      await Image.destroy({
+        where: { productId: id }
+      });
+
       await Product.destroy({
         where: { id }
       });
@@ -70,7 +74,7 @@ const renderNew = (req, res) => {
 
 const addNew = async (req, res) => {
   try {
-    const { nombre, fabricante, precio, descuento, categoryId, descripcion } = req.body;
+    const { nombre, fabricante, precio, descuento, categoryId, descripcion,} = req.body;
 
     const newProduct = await Product.create({
       nombre,
@@ -78,13 +82,13 @@ const addNew = async (req, res) => {
       precio,
       descuento,
       categoryId,
-      descripcion
+      descripcion,
     });
 
     if (req.files && req.files.length > 0) {
       const imagePromises = req.files.map(file => {
         return Image.create({
-          name: file.filename,
+          name: "/images/newProducts/"+file.filename,
           productId: newProduct.id
         });
       });

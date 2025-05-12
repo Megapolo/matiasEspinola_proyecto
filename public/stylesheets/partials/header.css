@@ -68,6 +68,7 @@ header {
     padding: 0.82em;
     border: none;
     border-left: 1px solid #ebebeb;
+    margin: 0;
 }
 
 #search-bar {
@@ -141,7 +142,6 @@ nav ul li i:hover {
     }
 
 }
-
 }
 
 @media screen and (max-width: 768px) {

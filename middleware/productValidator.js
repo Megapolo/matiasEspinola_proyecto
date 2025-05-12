@@ -1,6 +1,6 @@
 
 const checkProduct = async (req, res, next) => {
-  const {nombre, descripcion ,categoryId} = req.body;
+  const {nombre, descripcion ,categoryId, fabricante, precio} = req.body;
 
   let errors = [];
 
@@ -16,6 +16,16 @@ const checkProduct = async (req, res, next) => {
     errors.push({ field: 'categoryId', message: 'La categoria es requerida' });
   }
 
+  
+  if (!fabricante) {
+    errors.push({ field: 'fabricante', message: 'El fabricante es requerido' });
+  }
+  
+  if (!precio || precio <= 0) {
+    errors.push({ field: 'precio', message: 'El precio es requerido' });
+  }
+  
+  
   if (errors.length > 0) {
     return res.status(400).json({ errors });
   }

@@ -6,6 +6,8 @@
     <h1 id="titulo">Editor de producto</h1>
  <form action="/admin/products/edit/<%= product.id%>?_method=PUT" method="POST" id="formulario">
     <img src="<%= product.images[0] ? product.images[0].name : "/images/Logo-banner/Logo1.jpg" %>" id="image" alt="<%=product.nombre%>">
+    <% console.log(product.images) %>
+    
     <li>ID:</li>
     <span><%=product.id%></span>
     <li>Nombre</li>

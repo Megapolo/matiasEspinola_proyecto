@@ -5,9 +5,9 @@ const uploadNewProductImage = require('../../middleware/uploadProductImage')
 const {checkAdminRole} = require('../../middleware/adminProductValidation')
 const { checkProduct} = require('../../middleware/productValidator')
 
-router.get('/products', /*checkAdminRole ,*/ render)
+router.get('/products', checkAdminRole , render)
 
-router.get('/products/edit/:id', edit)
+router.get('/products/edit/:id', checkAdminRole , edit)
 
 router.put('/products/edit/:id', checkProduct, update)
 
@@ -15,6 +15,6 @@ router.delete('/products/delete/:id', remove)
 
 router.get('/products/add', checkAdminRole, renderNew)
 
-router.post('/products/add', checkProduct, uploadNewProductImage.single('img'), addNew)
+router.post('/products/add', uploadNewProductImage.array('img', 5), checkProduct, addNew)
 
 module.exports = router

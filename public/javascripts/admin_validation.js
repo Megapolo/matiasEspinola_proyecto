@@ -65,3 +65,27 @@ const confirmEdit = (event) => {
         alert("Edición cancelada.");
     } 
 }
+
+const confirmNewProduct = (event) => {
+    event.preventDefault();
+    const getImage = document.getElementById("image").value;
+
+    if(getImage.length < 1) {
+        const confirmWithoutImage = confirm("¿Estás seguro de que deseas agregar este producto SIN imagen?");
+
+        if (confirmWithoutImage) {
+            getForm.submit();
+        } else {
+            alert("Accion cancelada.");
+        }
+        
+    } else {
+        const confirmation = confirm("¿Estás seguro de que deseas agregar este producto?");
+
+        if (confirmation) {
+            getForm.submit();
+        } else {
+            alert("Accion cancelada");
+        } 
+}
+}

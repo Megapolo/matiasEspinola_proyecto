@@ -3,24 +3,51 @@ const { User } = db;
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 
-const register = (req, res, next) => {
-  res.render('users/register',{ title: 'Registro'});
+const register = async (req, res, next) => {
+  try {
+      // Fetch de provincias
+    const response = await fetch("https://apis.datos.gob.ar/georef/api/provincias");
+    if (!response.ok) {
+      throw new Error("Error al obtener provincias");
+    }
+    const data = await response.json();
+    const provincias = data.provincias.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+      res.render('users/register',{ title: 'Registro', provincias });
+  } catch (error) {
+    console.error("Error al cargar provincias y localidades: ", error);
+    return res.status(500).render("error", { error, message: "Hubo un error al cargar provincias y localidades." });
+  }
+
 };
 
 const store = async (req, res, next) => {
   const errors = validationResult(req).mapped();
-  const { email, password, name, lastname, tel, provincia, localidad, address } = req.body;
+  const { email, password, name, lastname, tel, provincia, location, address } = req.body;
 
   if (!validationResult(req).isEmpty()) {
-    return res.render("users/register", {
-      title: "Registro",
-      errors,
-      email,
-      password,
-      name,
-      tel,
-      lastname
-    });
+    try {
+      const response = await fetch("https://apis.datos.gob.ar/georef/api/provincias");
+      const data = await response.json();
+      const provincias = data.provincias.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+      return res.render("users/register", {
+        title: "Registro",
+        errors,
+        email,
+        password,
+        name,
+        tel,
+        lastname,
+        provincias
+      });
+    } catch (error) {
+      console.error("Error al cargar provincias:", error);
+      return res.status(500).render("error", {
+        error,
+        message: "Error al cargar provincias"
+      });
+    }
   }
 
   try {
@@ -33,19 +60,24 @@ const store = async (req, res, next) => {
       lastname,
       tel,
       provincia,
-      localidad,
+      localidad: location,
       address,
       rolId: 2,
       code: '',
-      img: ''   
+      img: ''
     });
 
     res.redirect("/users/login");
   } catch (error) {
     console.error("Error al registrar usuario:", error);
-    res.status(500).send("Error interno del servidor");
+    res.status(500).render("error", {
+      error,
+      message: "Hubo un error al registrar el usuario."
+    });
   }
 };
+
+
 
 const load = function (req, res, next){
   res.render('users/login', {title: 'Login'})
@@ -80,8 +112,14 @@ const login = async (req, res, next) => {
         email,
       });
     }
+
     const { name, lastname, id, rolId } = user;
     req.session.user = { email, name, lastname, id };
+
+    if (user.avatar) {
+      req.session.user.img = user.img;
+    }
+    
     if (rememberMe) {
       res.cookie("user", { email, name, lastname, id }, { maxAge: 1000 * 60 * 30 });
     }
@@ -104,31 +142,29 @@ const logout = (req, res) => {
 
 const profile = async (req, res) => {
   const id = req.params.id;
-
   try {
-    // Buscar al usuario en la base de datos
     const user = await User.findByPk(id);
-
     if (!user) {
       return res.status(404).render("error", { error: "Usuario no encontrado" });
     }
 
     // Fetch de provincias
     const response = await fetch("https://apis.datos.gob.ar/georef/api/provincias");
-    if (!response.ok) {
-      throw new Error("Error al obtener provincias");
-    }
     const data = await response.json();
-    const provincias = data.provincias.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    const provincias = Array.isArray(data.provincias) ? data.provincias.sort((a, b) => a.nombre.localeCompare(b.nombre)) : [];
 
-    const idProvincia = user.provincia ? user.provincia : provincias[0].id;
+    if (provincias.length === 0) {
+      throw new Error("No se encontraron provincias");
+    }
+
+    const idProvincia = user.provincia || provincias[0].id;
 
     // Fetch de localidades
     const responseLocalidades = await fetch(
       `https://apis.datos.gob.ar/georef/api/localidades?provincia=${idProvincia}&max=500`
     );
     const dataLocalidades = await responseLocalidades.json();
-    const localidades = dataLocalidades.localidades.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    const localidades = Array.isArray(dataLocalidades.localidades) ? dataLocalidades.localidades.sort((a, b) => a.nombre.localeCompare(b.nombre)) : [];
 
     res.render("users/profile", {
       title: "Perfil",
@@ -153,8 +189,10 @@ const update = async (req, res) => {
     }
     const updatedData = {
       ...req.body,
-      avatar: req.file ? req.file.filename : user.avatar
+      img: req.file ? "/images/users/" + req.file.filename : user.avatar
     };
+
+    console.log(req.file)
 
     if (req.body.contrasena && req.body.contrasena2) {
       if (req.body.contrasena === req.body.contrasena2) {
@@ -166,6 +204,9 @@ const update = async (req, res) => {
       updatedData.password = user.password; 
     }
     delete updatedData.contrasena2;
+
+    console.log("Archivo recibido:", req.file);
+    console.log("Datos actualizados:", updatedData);
 
     await user.update(updatedData);
 

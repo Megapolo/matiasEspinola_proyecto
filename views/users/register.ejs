@@ -16,11 +16,14 @@
   <div class="tercera">
     <select name="provincia" id="prov">
       <option value="" disabled selected >Selecciona una opción</option>
-      <option value="1">Buenos Aires</option>
-      <option value="2">Entre Ríos</option>
-      <option value="3">Santa Fé</option>
+      <% provincias.forEach(provincia => { %>            
+               <option value="<%= provincia.id %>"><%= provincia.nombre%></option>
+            <% }); %>
     </select>
-    <input type="text" name="location" id="location" placeholder="Localidad">
+    <select name="location" id="location">
+      <option value="" disabled selected >Seleccione una localidad</option>
+    
+    </select>
     <input type="text" name="postal" id="postal" placeholder="Código postal">
   </div>
   <div class="cuarta">

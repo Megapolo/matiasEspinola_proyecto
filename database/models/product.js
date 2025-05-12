@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
       });
       Product.hasMany(models.Image, {
         as: "images",
+        onDelete: 'CASCADE',
+        hooks: true,
         foreignKey: 'productId'
       });
     }

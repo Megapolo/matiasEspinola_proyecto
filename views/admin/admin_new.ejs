@@ -4,27 +4,29 @@
 <main>
 <h1>Nuevo Producto</h1>
 
-<form action="/admin/products/add" method="POST">
+<form action="/admin/products/add" method="POST" id="formulario" enctype="multipart/form-data">
     <label>Nombre del artículo</label>
-    <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+    <input type="text" name="nombre" id="name" placeholder="Nombre del artículo" oninput="editValidation()">
     <label>Fabricante</label>
-    <input type="text" name="fabricante" id="fabricante"placeholder="Fabricante">
-    <label>Tipo de artículo </label>
-    <select name="categoryId" id="tipo">
+    <input type="text" name="fabricante" id="fabricante"placeholder="Fabricante" oninput="editValidation()">
+    <label>Categoría del articulo</label>
+    <select name="categoryId" id="category" oninput="editValidation()">
         <option value='' selected disabled>Tipo de producto</option>
-        <option value="3">Gabinete</option>
         <option value="1">Placa de Video</option>
         <option value="2">Procesador</option>
+        <option value="3">Gabinete</option>
     </select>
     <label>Precio del articulo</label>
-    <input type="text" name="precio" id="precio" placeholder="Precio sin '$'">
+    <input type="text" name="precio" id="precio" placeholder="Precio sin '$'" oninput="editValidation()">
     <label>Imagen del articulo <small>(no hay presupuesto para una vista previa)</small></label>
-    <input type="file" name="img" id="img" accept=".jpg,.png">
+    <input type="file" name="img" id="image" accept=".jpg,.png">
     <label>Descuento</label>
-    <input type="text" name="descuento" id="descuento" placeholder="Descuento en %" value="0">
+    <input type="text" name="descuento" id="descuento" placeholder="Descuento en %" value="0" oninput="editValidation()">
     <label>Descripción</label>
-    <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción del artículo"></textarea>
-    <button type="submit">Aceptar y publicar</button>
+    <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción del artículo" oninput="editValidation()"></textarea>
+    <span id="error-list"></span>
+    <button type="submit" id="btnEdit" disabled onclick="confirmNewProduct(event)">Aceptar y publicar</button>
 </form>
+<script src="/javascripts/admin_validation.js"></script>
 </main>
 <%- include("../partials/footer") %>

@@ -19,7 +19,8 @@ module.exports = {
            tableName: 'Products'
           },
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
