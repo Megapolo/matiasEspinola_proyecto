@@ -2,7 +2,6 @@
 <%- include("../partials/header") %>
 <link rel="stylesheet" href="/stylesheets/users/admin.css">
     <main>
-        <p style="color: white; background-color: red; padding: 3px;">Bueno acá no se que hice pero no puedo hacer que tome las imagenes desde la base de datos :c, ya que utilice dos metodos diferentes en la pagina de productos a las de admin</p>
         <form id="choice">
             <label ><input type="radio" name="opcion" value="producto" onchange="selectType(this.value)"> Producto</label> 
             <label ><input type="radio" name="opcion" value="usuario" onchange="selectType(this.value)"> Usuario </label>
@@ -41,10 +40,9 @@
                 <% products.forEach(element => { %>
                 <a href="/admin/products/edit/<%= element.id %>">
                     <article>
-                        <% if (element.imagenes && element.imagenes.length >= 0) { %>
-                            <%console.log(element.imagenes)%>
+                        <% if (element.images && element.images.length > 0) { %>
 
-                            <img src="<%= element.imagenes[0].name %>" alt="<%= product.nombre %>">
+                            <img src="<%= element.images[0].name %>" alt="<%= products.nombre %>">
                         <% } else { %>
                             <img src="/images/default-product.jpg" alt="Imagen no disponible">
                         <% } %>

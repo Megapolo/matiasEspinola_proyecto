@@ -1,5 +1,5 @@
 const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const isPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/;
+const isPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9])[A-Za-z\d\S]{8,}$/;
 const validationSpan = document.getElementById("validations");
 const getButton = document.getElementById("btn")
 
@@ -16,7 +16,7 @@ const validateAll = () => {
     
     if (password) {
         if (!isPassword.test(password)) {
-            errors.push("La contraseña debe tener al menos 2 caracteres, una letra y un número.");
+            errors.push("La contraseña debe tener al menos 8 caracteres, una letra, un caracter especial y un número.");
         }
     }
     

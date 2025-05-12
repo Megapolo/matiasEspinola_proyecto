@@ -26,7 +26,9 @@ const render = async (req, res, next) => {
         include: [{ association: 'categoria' }, { association: 'images' }
         ]
       });
+
       res.render('admin/admin_product', { title: 'Edición de producto', product });
+
     } catch (error) {
       console.log("Error al buscar producto para editar:", error);
       res.render("error", { error });
@@ -37,6 +39,7 @@ const update = async (req, res) => {
     const id = req.params.id;
     const updatedData = req.body;
   
+    console.log("Datos actualizados:", updatedData);
     try {
       await Product.update(updatedData, {
         where: { id }
@@ -67,14 +70,15 @@ const renderNew = (req, res) => {
 
 const addNew = async (req, res) => {
   try {
-    const { nombre, fabricante, precio, descuento, categoryId } = req.body;
+    const { nombre, fabricante, precio, descuento, categoryId, descripcion } = req.body;
 
     const newProduct = await Product.create({
       nombre,
       fabricante,
       precio,
       descuento,
-      categoryId
+      categoryId,
+      descripcion
     });
 
     if (req.files && req.files.length > 0) {

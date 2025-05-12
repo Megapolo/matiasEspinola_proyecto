@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/partials/header.css">
+<link rel="stylesheet" href="/stylesheets/partials/cartContainer.css">
 <body>
 <header>
     <div id="upper-bar">
@@ -9,11 +10,11 @@
            </form>
         <% if (session && session.user) {%>
             <a href="/users/profile/<%= locals.session.user.id %>" id="login"><p>Perfíl</p></a>
-            <a href="/cart" id="carrito"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="#" id="carrito"><i class="fa-solid fa-cart-shopping"></i></a>
             <% } else { %>
                 <% console.log(locals.session)%>
         <a href="/users/login" id="login"><p>Ingresar</p></a>
-        <a href="/users/login" id="carrito"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a href="#" id="carrito"><i class="fa-solid fa-cart-shopping"></i></a>
             <% }%>
 
     </div>
@@ -21,7 +22,7 @@
         <ul>
             <li><i class="fa-solid fa-bars"></i></li>
             <li><a href="/">Inicio</a></li>
-            <li><a href="/products">Productos</a</li>
+            <li><a href="/products">Productos</a></li>
             <li><a href="">Contactos</a></li>
             <li><div onclick="DarkMode()"><i class="fa-solid fa-toggle-off button-on-off "></i>
                 <i class="fa-solid fa-toggle-on button-on-off hidden"></i>
@@ -29,5 +30,24 @@
                 </div>
         </ul>
     </nav>
+    <div id="cart-container" class="hidden">
+
+        <h1>Carrito de compras</h1>
+
+        <i class="fa-solid fa-xmark" id="close-cart"></i>
+
+        <section class="cartItems"></section>
+
+        <div id="cartTotalContainer">
+        <section class="cartTotal">
+
+            <p id="total">Total</p>
+            <p id="pesos">$</p>
+        </section>
+        <a href="/cart" id="payButton">Ir a pagar</a>
+        </div>
+    </div>
+
     <script src="/javascripts/header.js" defer> </script>
+    <script src="/javascripts/cartContainer.js"></script>
 </header>

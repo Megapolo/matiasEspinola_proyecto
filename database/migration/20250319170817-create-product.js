@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nombre: {
+        allowNull: false,
         type: Sequelize.STRING(100)
       },
       fabricante: {
@@ -25,9 +26,11 @@ module.exports = {
         onDelete: 'SET NULL'
       },
       precio: {
+        allowNull: false,
         type: Sequelize.DECIMAL(10, 2)
       },
       descuento: {
+        defaultValue: 0,
         type: Sequelize.FLOAT(5, 2)
       },
       descripcion: {

@@ -5,31 +5,34 @@
  <% if (locals.product) {%>
     <h1 id="titulo">Editor de producto</h1>
  <form action="/admin/products/edit/<%= product.id%>?_method=PUT" method="POST" id="formulario">
-    <img src="<%= product.img%>" alt="<%=product.nombre%>">
+    <img src="<%= product.images[0] ? product.images[0].name : "/images/Logo-banner/Logo1.jpg" %>" id="image" alt="<%=product.nombre%>">
     <li>ID:</li>
     <span><%=product.id%></span>
     <li>Nombre</li>
-    <input type="text" name="nombre" id="<%= product.nombre%>" value="<%= product.nombre%>">
+    <input type="text" name="nombre" id="name" value="<%= product.nombre%>" oninput="editValidation()">
     <li>Fabricante</li>
-    <input type="text" name="fabricante" value="<%=product.fabricante%>">
-    <li>Tipo de producto</li>
-    <select name="tipo" id="tipo">
-      <option value='' disabled <%= !product.tipo ? 'selected' : '' %>>Tipo de producto</option>
-      <option value="3" <%= product.tipo == 3 ? 'selected' : '' %>>Gabinete</option>
-      <option value="1" <%= product.tipo == 1 ? 'selected' : '' %>>Placa de Video</option>
-      <option value="2" <%= product.tipo == 2 ? 'selected' : '' %>>Procesador</option>
+    <input type="text" name="fabricante" id="fabricante" value="<%=product.fabricante%>" oninput="editValidation()">
+    <li>Categoría</li>
+    <% if (product.categoria) {%>
+    <select name="tipo" id="category" onchange="editValidation()">
+      <option value='' disabled <%= !product.categoria.id ? 'selected' : '' %>>Tipo de producto</option>
+      <option value="1" <%= product.categoria.id == 1 ? 'selected' : '' %>>Placa de Video</option>
+      <option value="2" <%= product.categoria.id == 2 ? 'selected' : '' %>>Procesador</option>
+      <option value="3" <%= product.categoria.id == 3 ? 'selected' : '' %>>Gabinete</option>
     </select>
+    <% } %>
     <li>Precio</li>
-    <input type="text" name="precio" id="precio" value="<%=product.precio%>">
+    <input type="text" name="precio" id="precio" value="<%=product.precio%>" oninput="editValidation()">
     <li>% De descuento</li>
-    <input type="text" name="descuento" id="descuento" value='<%= product.descuento ? product.descuento : 0 %>'>
-    <li>Descripcion</li>
-    <textarea name="descripcion" id="descripcion"><%=product.descripcion%></textarea>
+    <input type="text" name="descuento" id="descuento" value='<%= product.descuento ? product.descuento : 0 %>' oninput="editValidation()">
+    <li>Descripción</li>
+    <textarea name="descripcion" id="descripcion" oninput="editValidation()"><%=product.descripcion%></textarea>
     <p class="hidden" id="total"></p>
     <li>Url de imagen (por ahora)</li>
     <!-- No me funciona multer 🤠, sigo viendo el por que -->
     <input type="text" name="img" id="<%= product.img%>"value="<%=product.img%>">
-    <button type="submit">Aceptar cambios</button>
+    <span id="error-list"></span>
+    <button type="submit" id="btnEdit" onclick="confirmEdit(event)">Aceptar cambios</button>
  </form>
  <form action="/admin/products/delete/<%= product.id%>?_method=DELETE" method="POST">
    <button type="submit" id="delete">Eliminar artículo</button>
@@ -37,4 +40,5 @@
  <% }%>
 </main>
 <script src="/javascripts/admin.js"></script>
+<script src="/javascripts/admin_validation.js"></script>
 <%- include("../partials/footer") %>

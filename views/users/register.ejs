@@ -5,13 +5,13 @@
 <form action="/users/register" method="POST">
   <h4>No estas registrado? Por favor, completá los campos con tus datos</h4>
   <div class="primera">
-    <input type="text" name="email" id="mail" placeholder="E-mail" value="<%= locals.email ? email : ''%>" >
-    <input type="password" name="password" id="password" placeholder="Contraseña" value="<%= locals.password ? password : '' %>">
-    <input type="password" name="confPassword" id="confPassword" placeholder="Repite tu contraseña" value="<%= locals.password ? password : ''%>">
+    <input type="text" name="email" id="mail" placeholder="E-mail *" value="<%= locals.email ? email : ''%>" oninput="RegisterInputValidation()" >
+    <input type="password" name="password" id="password" placeholder="Contraseña *" value="<%= locals.password ? password : '' %>" oninput="RegisterInputValidation()">
+    <input type="password" name="confPassword" id="confPassword" placeholder="Repite tu contraseña *" value="<%= locals.password ? password : ''%>" oninput="RegisterInputValidation()">
   </div>
   <div class="segunda">
-    <input type="text" name="name" id="name" placeholder="Nombre" value="<%= locals.name ? name : '' %>">
-    <input type="text" name="lastname" id="lastname" placeholder="Apellido" value="<%= locals.lastname ? lastname : ''%>">
+    <input type="text" name="name" id="name" placeholder="Nombre *" value="<%= locals.name ? name : '' %>" oninput="RegisterInputValidation()">
+    <input type="text" name="lastname" id="lastname" placeholder="Apellido *" value="<%= locals.lastname ? lastname : ''%>" oninput="RegisterInputValidation()">
   </div>
   <div class="tercera">
     <select name="provincia" id="prov">
@@ -25,9 +25,11 @@
   </div>
   <div class="cuarta">
     <input type="text" name="adress" id="adress" placeholder="Direccion" >
-    <input type="tel" name="tel" id="contactnumber" placeholder="Teléfono de contacto" value="<%= locals.tel ? tel : ''%>">
+    <input type="tel" name="tel" id="contactnumber" placeholder="Teléfono de contacto *" value="<%= locals.tel ? tel : ''%>" oninput="RegisterInputValidation()">
   </div>
+  <span style="color: rgb(151, 151, 151); width: 70%; margin-top: 1em;">(*) Requerido</span>
   <div class="errors">
+    <span id="validationSpan"></span>
   <% if (locals.errors) {%>
     <ul> 
     <% for (const key in errors) {%>
@@ -37,7 +39,7 @@
     </ul>
     <% } %>
   </div>
-  <button type="submit">Registrar</button>
+  <button type="submit" id="btn">Registrar</button>
 </form>
 </main>
 <script src="/javascripts/register.js"></script>

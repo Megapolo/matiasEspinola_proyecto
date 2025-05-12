@@ -6,7 +6,7 @@ const loginValidator = require('../../validation/loginValidation')
 const loginVerify = require('../../middleware/loginValidator');
 const upload = require('../../middleware/uploadImage');
 
-router.get('/login', loginVerify ,load);
+router.get('/login', load);
 router.post('/login', loginValidator ,login);
 router.get('/logout', logout)
 

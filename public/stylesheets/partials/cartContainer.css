@@ -1,0 +1,89 @@
+.hidden {
+    opacity: 0;
+    visibility: none;
+}
+
+#cart-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    min-height: 70vh;
+    max-height: 80vh;
+    color: rgb(0, 0, 0);
+    background-color: #ebebeb;
+    width: 50vw;
+    top: 15%;
+    left: 24.75%;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+    border: 1px solid black;
+    transition: opacity .2s, visibility .2s;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    z-index: 2;
+}
+
+#cart-container h1 {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    color: white;
+    background-color: blueviolet;
+    border-bottom: 1px solid black;
+    
+}
+
+#close-cart {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: .5rem .6rem .5rem .6rem;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+#close-cart:hover {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+
+#cartTotalContainer {
+    position: absolute;
+    width: 100%;
+    bottom: 0
+}
+
+.cartTotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-top: 1px solid black;
+    p {
+        margin: 0;
+        padding: 0
+        ;
+    }
+}
+
+#payButton {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #cccccc;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    transition: background-color .2s, color .2s;
+    color: black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#payButton:hover {
+    background-color: blueviolet;
+    color: white;
+}
