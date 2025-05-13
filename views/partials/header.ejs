@@ -8,12 +8,14 @@
             <input id="search-bar" name="search" type="text" placeholder="Buscar...">
              <button type="submit" id="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
            </form>
-        <% if (session && session.user) {%>
-            <% if (user.img) { %>
+        <% if (locals.session && locals.session.user) {%>
+            <% if (locals.session.user.img) { %>
+
                 <div style="position: relative; width: 80px; height: 80px;">
-                <a href="/users/profile/<%= locals.session.user.id %>"><img src="<%= user.img%>" alt="Avatar" id="avatar" style="position:absolute; top: 0; width: 80px; height: 80px; object-fit: cover;border-radius: 50%;"></a>
+                <a href="/users/profile/<%= locals.session.user.id %>"><img src="<%= locals.session.user.img%>" alt="Avatar" id="avatar" style="position:absolute; top: 0; width: 80px; height: 80px; object-fit: cover;border-radius: 50%;"></a>
                 </div>
             <% } else { %>
+
             <a href="/users/profile/<%= locals.session.user.id %>" id="login"><p>Perfíl</p></a>
             <% } %>
             <a href="#" id="carrito"><i class="fa-solid fa-cart-shopping"></i></a>

@@ -113,8 +113,8 @@ const login = async (req, res, next) => {
       });
     }
 
-    const { name, lastname, id, rolId } = user;
-    req.session.user = { email, name, lastname, id };
+    const { name, lastname, id, rolId, img } = user;
+    req.session.user = { email, name, lastname, id, img };
 
     if (user.avatar) {
       req.session.user.img = user.img;
@@ -187,12 +187,11 @@ const update = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
+
     const updatedData = {
       ...req.body,
       img: req.file ? "/images/users/" + req.file.filename : user.avatar
     };
-
-    console.log(req.file)
 
     if (req.body.contrasena && req.body.contrasena2) {
       if (req.body.contrasena === req.body.contrasena2) {
@@ -205,8 +204,9 @@ const update = async (req, res) => {
     }
     delete updatedData.contrasena2;
 
-    console.log("Archivo recibido:", req.file);
-    console.log("Datos actualizados:", updatedData);
+
+      req.session.user.img = updatedData.img;
+    
 
     await user.update(updatedData);
 

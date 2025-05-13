@@ -46,16 +46,18 @@
          <label for="contrasena2">Contaseña</label>
          <input type="password" name="contrasena2" id="contrasena2">
       </div>
-      <div>
-         <% if (locals.user.img) { %>
-            <img src="<%= locals.user.img %>" alt="Avatar" id="preview-avatar">
-         <% } %>
+      <div id="avatar-container">
          <label for="avatar">Avatar</label>
-         <input type="file" name="avatar" id="avatar">
+         <% if (locals.user.img) { %>
+            <img src="<%= locals.user.img %>" style="max-height: 300px;" alt="Avatar" id="preview-avatar">
+         <% } %>
       </div>
-      <button type="submit">Aceptar cambios</button>
+      <div id="new-avatar-container">
+         <input type="file" name="avatar" id="avatar" accept=".jpg, .jpeg, .png" onchange="previewImage(event, '#new-avatar-container')">
+      </div>
+      <button type="submit" style="height: 2rem; justify-self: center; align-self: center;">Aceptar cambios</button>
+      <li style="display: flex; margin-top: 0; justify-self: center; align-self: center;"><a href="/users/logout" style="justify-self: center; align-self: center;" >Log-out</a></li>
    </form>
- <li><a href="/users/logout">Log-out</a></li>
 </div>
 <% }%>
 </main>

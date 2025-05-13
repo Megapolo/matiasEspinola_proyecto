@@ -14,10 +14,7 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'productId',
           as: 'producto'
         });
-        Image.belongsTo(models.User, {
-          foreignKey: 'userId',
-          as: 'usuario'
-        });
+
     }
   }
   Image.init({

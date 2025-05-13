@@ -30,10 +30,10 @@
     <li>Descripción</li>
     <textarea name="descripcion" id="descripcion" oninput="editValidation()"><%=product.descripcion%></textarea>
     <p class="hidden" id="total"></p>
-    <li>Url de imagen (por ahora)</li>
-    <!-- No me funciona multer 🤠, sigo viendo el por que -->
+    <!--<li>Url de imagen (por ahora)</li>
     <input type="text" name="img" id="<%= product.img%>"value="<%=product.img%>">
     <span id="error-list"></span>
+    !-->
     <button type="submit" id="btnEdit" onclick="confirmEdit(event)">Aceptar cambios</button>
  </form>
  <form action="/admin/products/delete/<%= product.id%>?_method=DELETE" method="POST">
