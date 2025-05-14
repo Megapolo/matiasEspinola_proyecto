@@ -21,7 +21,8 @@ a {
 }
 
 .hidden {
-  display: none !important;
+  opacity: none;
+  visibility: hidden;
 }
 
 .main-dark-mode {
