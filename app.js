@@ -6,8 +6,11 @@ var logger = require('morgan');
 var session = require('express-session')
 var methodOverride = require('method-override')
 require('dotenv').config()
+var cors = require('cors')
 
-var cartRouter = require('./routes/products/cart_router');
+
+
+var cartApiRouter = require('./routes/products/cartApi_router');
 var indexRouter = require('./routes/index_router');
 var userRouter = require('./routes/users/users_router');
 var productRouter = require('./routes/products/product_router');
@@ -15,12 +18,15 @@ var searchRouter = require('./routes/products/search_router');
 var adminRouter = require('./routes/users/admin_router');
 var productApiRouter = require('./routes/products/productApi_router')
 
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
+app.use(cors({origin: 'http://localhost:5173', credentials: true}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +38,10 @@ app.use(session({
   secret: process.env.SECURE,
   resave: false,
   saveUninitialized: true,
+    cookie: {
+    secure: false, // debe ser false en desarrollo (http)
+    sameSite: 'lax' // o 'none' si usás https y dominios distintos
+  }
 }))
 
 app.use((req, res, next) => {
@@ -39,7 +49,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/cart', cartRouter)
+app.use('/api/carts', cartApiRouter)
 app.use('/', indexRouter);
 app.use('/index', indexRouter);
 app.use('/users', userRouter)

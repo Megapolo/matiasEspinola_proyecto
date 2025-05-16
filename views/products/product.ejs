@@ -34,8 +34,9 @@
           <input type="number" id="numericInput" value="1" min="1" max="10">
           <button onclick="increaseValue()">+</button>
         </div>
-        <a href="/cart"><button class="order" id="buy">Comprar ahora</button></a>
-        <button class="order" id="toCart">Añadir al carrito</button>
+        <span id="productID" class="hidden"><%=producto.id%></span>
+        <a href="/users/carrito"><button class="order" id="buy">Comprar ahora</button></a>
+        <button class="order" id="toCart" >Añadir al carrito</button>
       </div>
       </section>
 

@@ -36,6 +36,7 @@
     !-->
     <button type="submit" id="btnEdit" onclick="confirmEdit(event)">Aceptar cambios</button>
  </form>
+ <span id="error-list"></span>
  <form action="/admin/products/delete/<%= product.id%>?_method=DELETE" method="POST">
    <button type="submit" id="delete">Eliminar artículo</button>
  </form>

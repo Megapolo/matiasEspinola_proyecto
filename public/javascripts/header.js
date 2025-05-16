@@ -1,27 +1,49 @@
-const DarkMode = () => {
-    let class_off = document.querySelector(".fa-toggle-off")
-    let class_on = document.querySelector(".fa-toggle-on")
-    let buttonMain = document.querySelector("main")
-    let buttonFooter = document.querySelector("footer")
-    let buttonHeader = document.querySelector("header")
-    if ( class_off || class_on) {
-        class_off.classList.toggle("hidden")
-        class_on.classList.toggle("hidden")
-        buttonMain.classList.toggle("main-dark-mode")
-        buttonFooter.classList.toggle("footer-dark-mode")
-        buttonHeader.classList.toggle("header-dark-mode")
-        localStorage.getItem("darkMode")
-    } 
-}
+const applyDarkModeStyles = (enabled) => {
+  const header = document.querySelector("header");
+  const main = document.querySelector("main");
+  const footer = document.querySelector("footer");
 
-const savedTheme = localStorage.getItem("darkMode");
-if (savedTheme === "enabled") {
-    document.querySelector("header").classList.add("header-dark-mode");
-    document.querySelector("main").classList.add("main-dark-mode");
-    document.querySelector("footer").classList.add("footer-dark-mode");
-} else {
-    document.querySelector("header").classList.remove("header-dark-mode");
-    document.querySelector("main").classList.remove("main-dark-mode");
-    document.querySelector("footer").classList.remove("footer-dark-mode");
-    localStorage.setItem("darkMode", "disabled");
-}
+  const toggleClasses = (element, classes, add) => {
+    classes.forEach(cls => element.classList[add ? "add" : "remove"](cls));
+  };
+
+  const darkClasses = {
+    header: ["header-dark-mode", "fastChange"],
+    main: ["main-dark-mode", "fastChange"],
+    footer: ["footer-dark-mode", "fastChange"]
+  };
+
+  toggleClasses(header, darkClasses.header, enabled);
+  toggleClasses(main, darkClasses.main, enabled);
+  toggleClasses(footer, darkClasses.footer, enabled);
+};
+
+const updateIcons = (enabled) => {
+  const toggleOn = document.querySelector(".fa-toggle-on");
+  const toggleOff = document.querySelector(".fa-toggle-off");
+
+  if (enabled) {
+    toggleOn.classList.remove("displayOff");
+    toggleOff.classList.add("displayOff");
+  } else {
+    toggleOn.classList.add("displayOff");
+    toggleOff.classList.remove("displayOff");
+  }
+};
+
+const loadSavedTheme = () => {
+  const savedTheme = localStorage.getItem("darkMode") === "enabled";
+  applyDarkModeStyles(savedTheme);
+  updateIcons(savedTheme);
+};
+
+const DarkMode = () => {
+  const currentTheme = localStorage.getItem("darkMode");
+  const enabled = currentTheme !== "enabled";
+
+  localStorage.setItem("darkMode", enabled ? "enabled" : "disabled");
+  applyDarkModeStyles(enabled);
+  updateIcons(enabled);
+};
+
+document.addEventListener("DOMContentLoaded", loadSavedTheme);

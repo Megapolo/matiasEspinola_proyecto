@@ -114,7 +114,7 @@ const login = async (req, res, next) => {
     }
 
     const { name, lastname, id, rolId, img } = user;
-    req.session.user = { email, name, lastname, id, img };
+    req.session.user = { email, name, lastname, id, img, rolId };
 
     if (user.avatar) {
       req.session.user.img = user.img;
@@ -124,7 +124,7 @@ const login = async (req, res, next) => {
       res.cookie("user", { email, name, lastname, id }, { maxAge: 1000 * 60 * 30 });
     }
     if (rolId === 1) { // suponiendo que el rol admin tiene id 1
-      return res.redirect("/admin/products");
+      return res.redirect("http://localhost:5173");
     } else {
       return res.redirect(`/users/profile/${id}`);
     }
@@ -138,6 +138,10 @@ const logout = (req, res) => {
   req.session.destroy()
   res.clearCookie('user')
   res.redirect('/users/login')
+}
+
+const goToCart = (req, res, next) => {
+  res.render('products/cart', { title: "Carrito"})
 }
 
 const profile = async (req, res) => {
@@ -217,4 +221,4 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = {register, store, load, login, profile, logout, update}
+module.exports = {register, store, load, login, profile, logout, update, goToCart}

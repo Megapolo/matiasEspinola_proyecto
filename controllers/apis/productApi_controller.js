@@ -1,4 +1,5 @@
 const {Product} = require('../../database/models');
+const {User} = require('../../database/models');
 
 const getAllProducts = async (req, res) => {
     try {
@@ -116,4 +117,39 @@ const getProductByManufacturer = async (req, res) => {
     }
 }
 
-module.exports = {getAllProducts, getProductsByCategory, getProductById, getProductByManufacturer}
+const getUser = async (req, res) => {
+    try {
+        const response = await User.findByPk(req.params.id)
+        if (!response) {
+            throw new Error('Error en la peticion')
+        }
+
+        res.status(200).json(response)
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error cargando usuarios', error})
+    }
+} 
+
+const getCurrentUser = async (req, res) => {
+    try {
+        const userId = req.session.usuario?.id; // o req.session.userId, según lo tengas
+
+        if (!userId) {
+            return res.status(401).json({ message: "No autorizado" });
+        }
+
+        const user = await User.findByPk(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        res.status(200).json(user);
+
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener el usuario", error });
+    }
+};
+
+module.exports = {getAllProducts, getProductsByCategory, getProductById, getProductByManufacturer,getCurrentUser , getUser}
