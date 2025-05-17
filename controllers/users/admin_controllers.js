@@ -44,7 +44,7 @@ const update = async (req, res) => {
       await Product.update(updatedData, {
         where: { id }
       });
-      res.redirect('/admin/products');
+      res.redirect('http://localhost:5173');
     } catch (error) {
       console.log("Error al actualizar producto:", error);
       res.render("error", { error });

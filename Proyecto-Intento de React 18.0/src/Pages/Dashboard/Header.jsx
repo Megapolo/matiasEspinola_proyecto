@@ -34,6 +34,10 @@ export const Header = () => {
     userFetch();
   }, []);
 
+  useEffect(() => {
+    document.title = 'Mattec - Admin'
+  })
+
   const DarkMode = () => {};
 
   // Evitamos renderizar hasta tener el usuario

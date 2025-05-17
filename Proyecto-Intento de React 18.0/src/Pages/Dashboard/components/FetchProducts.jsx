@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 
-    const Item = ({id, categoria, fabricante, images, nombre, precio}) => {
+    const Item = ({id, categoria, fabricante, images, nombre, precio, desc}) => {
+        if (desc === null) {desc = 0}
+        let PrecioConDescuento = precio -((desc*precio)/100);
          return  (
          <a href={`http://localhost:3000/admin/products/edit/${id}`} target='_blank' className='Articulo'>
             <article key={id} >
@@ -11,6 +13,12 @@ import { useEffect } from 'react';
                 <div className='articleCateg'>
                 <p>Categoría</p>
                 <p>{categoria.name}</p>
+                </div>
+                <div className='articleDesc'>
+                <p>Descuento:</p>
+                <p>% {desc}</p>
+                <p>Precio con desc:</p>
+                <p>${PrecioConDescuento}.00</p>
                 </div>
                 <p className='articlePrice' >Precio: ${precio}</p>
             </article>
@@ -28,6 +36,7 @@ export const FetchProducts = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log(data)
       setProducts(data.data); // Guardamos el array directamente
     } catch (error) {
       console.error('Error al obtener los productos:', error);
@@ -42,7 +51,7 @@ export const FetchProducts = () => {
   return (
     <>
       {products.map(e => 
-        <Item key={e.id} id={e.id} categoria={e.categoria} fabricante={e.fabricante} images={e.images} nombre={e.nombre} precio={e.precio}/>
+        <Item key={e.id} id={e.id} categoria={e.categoria} fabricante={e.fabricante} images={e.images} nombre={e.nombre} precio={e.precio} desc={e.descuento}/>
       )}
     </>
   );

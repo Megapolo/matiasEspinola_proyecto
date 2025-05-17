@@ -17,10 +17,13 @@
                 <a href="/users/profile/<%= locals.session.user.id %>" id="login"><p>Perfíl</p></a>
             <% } %>
                 <a href="#" id="carrito"><i class="fa-solid fa-cart-shopping"></i></a>
-                <a href="http://localhost:5173">PortalAdmin</a>
+                <% if (locals.session.user.rolId === 1){ %>
+                <a href="http://localhost:5173" id="portalAdmin">PortalAdmin</a>
+                <%}%>
             <% } else { %>
                 <a href="/users/login" id="login"><p>Ingresar</p></a>
                 <a href="#" id="carrito"><i class="fa-solid fa-cart-shopping"></i></a>
+
             <% }%>
 
     </div>

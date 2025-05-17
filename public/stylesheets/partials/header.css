@@ -143,6 +143,12 @@ nav ul li i:hover {
     color: black;
 }
 
+#portalAdmin {
+    position: absolute;
+    right: 13em;
+    top: 5.3em;
+}
+
 .fa-solid {
     font-size: 20px;
 }

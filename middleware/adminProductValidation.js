@@ -24,7 +24,8 @@ const checkAdminRole = async (req, res, next) => {
     next();
   } catch (err) {
     console.error('Error en middleware checkAdminRole:', err);
-    res.status(500).json({ message: 'Error de sesión, éste úsuario no es administrador' });
+    //res.status(500).json({ message: 'Error de sesión, éste úsuario no es administrador' });
+    return res.redirect('/products')
   }
 };
 

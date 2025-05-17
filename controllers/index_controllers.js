@@ -25,7 +25,7 @@ const outstanding = async (req, res, next) => {
 
     const productos = Array.from(productosMap.values());
 
-    res.render('index', { title: 'Página', productos });
+    res.render('index', { title: 'Mattec', productos });
 
   } catch (error) {
     console.error("❌ ERROR EN INDEX:", error);
